@@ -11,6 +11,10 @@ module.exports = function(app) {
 
 
 
+
+
+
+
  // POST for adding new child
  app.post('/child', function(req, res) {
   var name = req.body.name;
@@ -24,7 +28,7 @@ module.exports = function(app) {
 });
 
  // DELETE for deleting child
- app.delete('/child/:id', (req, res) => {
+ app.delete('/child/:id', function(req, res) {
   var id = req.params.id;
   db.Parents.destroy({
     where: { id: id }
@@ -37,7 +41,7 @@ module.exports = function(app) {
 
 
   // GET one child by id
-  app.get('/child/:id', (req, res) => {
+  app.get('/child/:id', function(req, res) {
     var id = req.params.id;
     db.Parents.find({
       where: { id: id }
