@@ -6,11 +6,11 @@
 // =============================================================
 var express = require("express");
 var bodyParser = require("body-parser");
-var morgan = require("morgan");
 var session = require("express-session");
 var passport = require("passport");
+var local = require("passport-local");
 var flash = require("connect-flash");
-var cookie = require("cookie-parser");
+var cookieParser = require("cookie-parser");
 
 // Sets up the Express App
 // =============================================================
@@ -25,18 +25,23 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
+app.use(cookieParser());
 
 // Set middleware
 app.use(flash());
 app.use(session({
-	secret: "best app ever"
+	secret: "secret",
+	saveUninitalized: true,
+	resave: true
 }));
+
+// Connect flash
+app.use(flash());
+
 
 // Set passport middleware 
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(morgan("dev"))
-
 
 // Set Handlebars.
 var exphbs = require("express-handlebars");

@@ -7,4 +7,14 @@ module.exports = function(app) {
       res.json(dbParent);
     });
   });
+
+  app.post("/signup", function(req, res) {
+    db.Parent.create({
+        name: req.body.name,
+        password: req.body.password
+      })
+      .then(function(dbPost) {
+        res.json(dbPost);
+      });
+  });
 }
