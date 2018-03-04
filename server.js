@@ -6,6 +6,9 @@
 // =============================================================
 var express = require("express");
 var bodyParser = require("body-parser");
+var session = require("express-session");
+var passport = require("passport");
+var LocalStrategy = ("passport-local").Strategy;
 
 // Sets up the Express App
 // =============================================================
