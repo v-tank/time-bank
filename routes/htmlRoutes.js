@@ -4,4 +4,8 @@ module.exports = function(app) {
   app.get("/", function(req, res) {
     res.sendFile(path.join(__dirname, "../views/index.handlebars"));
   });
+
+  app.get("/signup", function(req, res) {
+    res.sendFile(path.join(__dirname, "../views/signup.handlebars"));
+  });
 }

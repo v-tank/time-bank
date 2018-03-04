@@ -42,7 +42,14 @@ module.exports = function(sequelize, DataTypes) {
       validate: {
         notNull: false
       }
-    }
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: false
+      }
+    }  
   });
 
   return Parent;
