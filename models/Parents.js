@@ -1,3 +1,5 @@
+var bcrypt = require("bcrypt-nodejs");
+
 module.exports = function(sequelize, DataTypes) {
   var Parent = sequelize.define("Parent", {
     name: {
@@ -5,7 +7,8 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       validate: {
         notNull: false
-      }
+      },
+      required: true
     },
     weight_task_1: {
       type: DataTypes.DECIMAL(3,2),
@@ -48,9 +51,26 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       validate: {
         notNull: false
-      }
+      },
+      required: true
     }  
   });
 
   return Parent;
+  
+  Parent.method.generateHash = function(password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+  };
+  
+  Parent.method.validPassword = function(password) {
+    return bcrypt.compareSync(password, this.local.password);
+  };
 }
+
+
+
+
+
+
+
+
