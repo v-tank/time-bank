@@ -1,42 +1,44 @@
-var Parent = require("../models/Parent.js");
-var localStrategy = require("passport-local").Strategy;
-
-module.exports = function(passport) {
-	passport.serializeUser(function(user, done) {
-		done(null, user.id)
-	});
-
-	passport.deserializeUser(function(id, done) {
-		Parent.findbyId(id, function(err, user) {
-			return done(err, user);
-		});
-	});
-
-	passport.use("local-signup", new localStrategy({
-		usernameField: "name", 
-		passwordField: "password",
-		passReqToCallback: true
-	},function(req, name, password, done) {
-		process.nextTick(function() {
-			Parent.findOne({"local.name": name}, function(err, user) {
-				if (err) {
-					return done(err);
-				}
-				if (user) {
-					return done(null, false, req.flash("signupmessage", "user already exists"))
-				} else {
-					var newUser = new Parent();
-					newUser.local.name = name;
-					newUser.local.password = newUser.generateHash(password);
-					newUser.save(function(err) {
-						if (err) {
-							throw err;
-						} else {
-							return done(newUser);
-						}
-					});
-				}
-			});
-		});
-	}));
-};
+var passport = require("passport");
+var LocalStrategy = require("passport-local").Strategy;
+var db = require("../models");
+// Telling passport we want to use a Local Strategy. In other words, we want login with a username/email and password
+passport.use(new LocalStrategy(
+  // Our user will sign in using an name, rather than a "username"
+  {
+    usernameField: "name"
+  },
+  function(name, password, done) {
+    // When a user tries to sign in this code runs
+    db.Parent.findOne({
+      where: {
+        name: name
+      }
+    }).then(function(dbParent) {
+      // If there's no user with the given email
+      if (!dbParent) {
+        return done(null, false, {
+          message: "Invalid name."
+        });
+      }
+      // If there is a user with the given email, but the password the user gives us is incorrect
+      else if (!dbParent.validPassword(password)) {
+        return done(null, false, {
+          message: "Invalid password."
+        });
+      }
+      // If none of the above, return the user
+      return done(null, dbParent);
+    });
+  }
+));
+// In order to help keep authentication state across HTTP requests,
+// Sequelize needs to serialize and deserialize the user
+// Just consider this part boilerplate needed to make it all work
+passport.serializeUser(function(parent, cb) {
+  cb(null, parent);
+});
+passport.deserializeUser(function(obj, cb) {
+  cb(null, obj);
+});
+// Exporting our configured passport
+module.exports = passport;
