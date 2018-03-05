@@ -1,39 +1,24 @@
-var path = require("path");
+// var path = require("path");
+// var isAuthenticated = require("../config/middleware/isAuthenticated");
 
-module.exports = function (app, passport) {
-  app.get("/", function (req, res) {
-    res.render("index");
-  });
+// module.exports = function (app, passport) {
+//   app.get("/", function(req, res) {
+//    // If the parent already has an account send them to the members page
+//    if (req.parent) {
+//      res.redirect("/api/profile");
+//    }
+//    res.render("signup")
+//   });
 
-  app.get("/signup", function (req, res) {
-    res.render("signup");
-  });
+//   app.get("/api/login", function(req, res) {
+//     // If the user already has an account send them to the profile page
+//     if (req.parent) {
+//       res.redirect("/profile");
+//     }
+//     res.render("login");
+//   });
 
-  app.get("/login", function (req, res) {
-    res.render("login");
-  });
-
-  // app.get("/profile", isLoggedIn, function(req, res) {
-  // 	res.render("profile");
-  // });
-
-  // app.get("/logout", function(req, res) {
-  // 	req.logout();
-  // 	res.redirect("/");
-  // });
-
-  // app.post("/signup", passport.authenticate("local", {  	
-
-  //   successRedirect: "/login",
-  //   faliureRedirect: "/signup",
-  //   faliureFlash: true
-  // }));
-}
-
-// function isLoggedIn(req, res, next) {
-// 	if (req.isAuthenticated()) {
-//  		return next()
-//  	} else {
-//  		return res.redirect("/");
-//  	}
-// };
+//   app.get("/api/profile", isAuthenticated, function(req, res) {
+//     res.render("profile");
+//   });
+// }

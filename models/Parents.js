@@ -1,8 +1,8 @@
-var bcrypt = require('bcryptjs');
+var bcrypt = require('bcrypt-nodejs');
 
 module.exports = function (sequelize, DataTypes) {
   var Parent = sequelize.define("Parent", {
-    username: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
       required: true
@@ -38,13 +38,14 @@ module.exports = function (sequelize, DataTypes) {
     }
   });
 
+  Parent.prototype.validPassword = function(password) {
+    return bcrypt.compareSync(password, this.password);
+  };
+  // Hooks are automatic methods that run during various phases of the User Model lifecycle
+  // In this case, before a User is created, we will automatically hash their password
+  Parent.hook("beforeCreate", function(parent) {
+    parent.password = bcrypt.hashSync(parent.password, bcrypt.genSaltSync(10), null);
+  });
+
   return Parent;
-
-  // Parent.method.generateHash = function(password) {
-  //   return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-  // };
-
-  // Parent.method.validPassword = function(password) {
-  //   return bcrypt.compareSync(password, this.local.password);
-  // };
-}
+};
