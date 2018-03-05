@@ -6,16 +6,13 @@
 // =============================================================
 var express = require("express");
 var bodyParser = require("body-parser");
-var morgan = require("morgan");
 var session = require("express-session");
 var passport = require("passport");
-var flash = require("connect-flash");
-var cookie = require("cookie-parser");
 
 // Sets up the Express App
 // =============================================================
 var app = express();
-var PORT = process.env.PORT || 8000;
+var PORT = process.env.PORT || 3000;
 
 // Requiring our models for syncing
 var db = require("./models");
@@ -27,7 +24,6 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 // Set middleware
-app.use(flash());
 app.use(session({
 	secret: "best app ever"
 }));
@@ -35,8 +31,6 @@ app.use(session({
 // Set passport middleware 
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(morgan("dev"))
-
 
 // Set Handlebars.
 var exphbs = require("express-handlebars");
@@ -49,12 +43,12 @@ app.use(express.static("public"));
 
 // Routes
 // =============================================================
-require("./routes/htmlRoutes.js")(app, passport);
+// require("./routes/htmlRoutes.js")(app);
 require("./routes/apiRoutes.js")(app);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
-db.sequelize.sync({force: true}).then(function () {
+db.sequelize.sync().then(function () {
   app.listen(PORT, function () {
     console.log("App listening on PORT " + PORT);
   });

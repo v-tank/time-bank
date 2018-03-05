@@ -1,34 +1,24 @@
-var path = require("path");
+// var path = require("path");
+// var isAuthenticated = require("../config/middleware/isAuthenticated");
 
-module.exports = function(app, passport) {
-  app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "../views/index.handlebars"));
-  });
+// module.exports = function (app, passport) {
+//   app.get("/", function(req, res) {
+//    // If the parent already has an account send them to the members page
+//    if (req.parent) {
+//      res.redirect("/api/profile");
+//    }
+//    res.render("signup")
+//   });
 
-  app.get("/signup", function(req, res) {
-    res.sendFile(path.join(__dirname, "../views/signup.handlebars"));
-  });
+//   app.get("/api/login", function(req, res) {
+//     // If the user already has an account send them to the profile page
+//     if (req.parent) {
+//       res.redirect("/profile");
+//     }
+//     res.render("login");
+//   });
 
-  app.get("/profile", isLoggedIn, function(req, res) {
-  	res.sendFile(path.join(__dirname, "../views/profile.handlebars"));
-  });
-
-  app.get("/logout", function(req, res) {
-  	req.logout();
-  	res.redirect("/");
-  });
-
-  app.post("/signup", passport.authenticate("local-signup", {
-    successRedirect: "/profile",
-    faliureRedirect: "/signup",
-    faliureFlash: true
-  }));
-}
-
-function isLoggedIn(req, res, next) {
-	if (req.isAuthenticated()) {
- 		return next()
- 	} else {
- 		return res.redirect("/");
- 	}
-}
+//   app.get("/api/profile", isAuthenticated, function(req, res) {
+//     res.render("profile");
+//   });
+// }
