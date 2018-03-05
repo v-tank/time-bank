@@ -26,6 +26,7 @@ module.exports = function(app) {
   // So we're sending the user back the route to the profile page because the redirect will happen on the front end
   // They won't get this or even be able to access this page if they aren't authed
   res.render("profile");
+
  });
 
   app.post("/api/signup", function(req, res) {
@@ -42,11 +43,6 @@ module.exports = function(app) {
   });
  }); 
 
-   // Route for logging user out
- app.get("/logout", function(req, res) {
-   req.logout();
-   res.redirect("/");
- });
 
  // Route for getting some data about our user to be used client side
  app.get("/api/parent_data", function(req, res) {
@@ -62,5 +58,7 @@ module.exports = function(app) {
        id: req.parent.id
      });
    }
- }); 
-}
+ });
+
+
+};
