@@ -7,6 +7,7 @@ module.exports = function(app) {
       res.json(dbParent);
     });
   });
+<<<<<<< HEAD
 
 
 
@@ -53,3 +54,6 @@ module.exports = function(app) {
   });
 
 };
+=======
+}
+>>>>>>> 5230b39fa5b7dfd48db8d0ae3685f037d04bff56
