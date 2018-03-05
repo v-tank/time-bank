@@ -7,12 +7,6 @@ module.exports = function(app) {
       res.json(dbParent);
     });
   });
-<<<<<<< HEAD
-
-
-
-
-
 
 
 
@@ -53,7 +47,49 @@ module.exports = function(app) {
       });
   });
 
+
+
+ // POST for adding new task
+ app.post('/task', function(req, res) {
+  var taskname = req.body.taskname;
+  db.Parents.create({
+    taskname: taskname,
+  })
+    .then(function(dbParent) {
+      console.log(dbParent);
+      res.json(dbParent);
+    })
+});
+
+  // GET all tasks
+  app.get('/tasks', function(req, res) {
+    db.Parent.findAll()
+      .then(function(dbParent)  {
+        res.json(dbParent);
+      });
+  });
+
+  // GET one task by id
+  app.get('/task/:id', function(req, res) {
+    var id = req.params.id;
+    db.Parents.find({
+      where: { id: id }
+    })
+      .then(function(dbParent) {
+        console.log(dbParent);
+        res.json(dbParent);
+      });
+  });
+
+ // DELETE a task
+ app.delete('/task/:id', function(req, res) {
+  var id = req.params.id;
+  db.Parents.destroy({
+    where: { id: id }
+  })
+    .then(function(dbParent) {
+      console.log(dbParent);
+      res.json(dbParent);
+    });
+});
 };
-=======
-}
->>>>>>> 5230b39fa5b7dfd48db8d0ae3685f037d04bff56
