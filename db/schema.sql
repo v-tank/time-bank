@@ -1,4 +1,4 @@
-CREATE DATABASE time_bank_db;
+-- CREATE DATABASE time_bank_db;
 USE time_bank_db;
 
 -- CREATE TABLE parents (
