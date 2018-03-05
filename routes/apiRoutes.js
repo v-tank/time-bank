@@ -7,4 +7,14 @@ module.exports = function(app) {
       res.json(dbParent);
     });
   });
-}
+
+  app.post("/api/new", function(req, res) {
+  	db.Child.create({
+  		name: req.body.name
+  	}).then(function(dbChild) {
+  		res.json(dbChild);
+  	});
+  });
+
+
+};
