@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html> 
+<head>
+<meta charset=utf-8/>
+<title>Calculator</title>
+</head>
+<body>
+<h1>Fun Time Calculator</h1>
+<form>
+How many minutes of fun time would you like to earn? <input type="text" id="firstNumber" /><br>
+At what percentage is this task weighted? <input type="text" id="secondNumber" placeholder="Ex: If 90%, enter .90" /><br>
+<input type="button" onClick="divideBy()" Value="Calculate"/>
+</form>
+<p>The approximate amount of productive time (in minutes) you must log: <span id = "result"></span></p>
+</body>
+
+<script type:"text/javascript">
+function divideBy() 
+{ 
+        num1 = document.getElementById("firstNumber").value;
+        num2 = document.getElementById("secondNumber").value;
+document.getElementById("result").innerHTML = Math.round(num1 / num2);
+}
+</script>
+</html>
