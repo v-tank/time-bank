@@ -37,7 +37,6 @@ module.exports = function (app) {
       name: req.body.username,
       password: req.body.password
     }).then(function (user) {
-      console.log("in here");
       res.render("profile", {
         name: user.name
       });
@@ -69,4 +68,6 @@ module.exports = function (app) {
       });
     }
   });
+
+  
 }
