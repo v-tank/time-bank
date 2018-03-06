@@ -9,13 +9,13 @@ module.exports = function (app) {
     if (req.user) {
       res.redirect("/profile");
     }
-    res.render("signup")
+    res.render("index")
   });
 
   app.get("/login", function (req, res) {
     // If the user already has an account send them to the profile page
     // res.redirect("/profile");
-    res.render("login");
+    res.render("index");
   });
 
   app.get("/profile", isAuthenticated, function (req, res) {
@@ -31,12 +31,13 @@ module.exports = function (app) {
   });
 
   app.post("/signup", function (req, res) {
-    // console.log(req.body);
+    console.log(req.body);
     db.Parent.create({
-      name: req.body.name,
+      name: req.body.username,
       password: req.body.password
     }).then(function () {
-      res.redirect(307, "/login");
+      console.log("in here");
+      res.redirect("/login");
     }).catch(function (err) {
       console.log(err);
       res.json(err);

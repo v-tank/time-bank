@@ -1,8 +1,8 @@
 $(document).ready(function() {
   // Getting references to our form and input
   var signUpForm = $(".signup");
-  var nameInput = $("#parentName");
-  var passwordInput = $("#parentPassword");
+  var nameInput = $("#parentName-register");
+  var passwordInput = $("#parentPassword-register");
   // When the signup button is clicked, we validate the name and password are not blank
   signUpForm.on("submit", function(event) {
     event.preventDefault();
