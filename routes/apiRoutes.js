@@ -74,12 +74,12 @@ module.exports = function (app) {
     res.render("addChild");
   }); 
 
-  app.post("/addChild", function (req, res) {
-    db.Child.create({
-      name: req.body.name,
-      foreignKey: 
-    })
-  });
+  // app.post("/addChild", function (req, res) {
+  //   db.Child.create({
+  //     name: req.body.name,
+  //     foreignKey: 
+  //   }).then
+  // });
 
   app.get("/earnIt", function (req, res) {
     res.render("earnIt", {title: "earn it"});
