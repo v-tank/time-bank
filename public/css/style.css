@@ -260,3 +260,12 @@ h1 {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 60px;
 }
+
+.jumbotron {
+  width: 100%;
+  background: -webkit-linear-gradient(left, #22d686, #24d3d3, #22d686, #24d3d3);
+  background: linear-gradient(to right, #22d686, #24d3d3, #22d686, #24d3d3);
+  background-size: 600% 100%;
+  -webkit-animation: HeroBG 20s ease infinite;
+  animation: HeroBG 20s ease infinite;
+}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Timer</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+    .jumbotron, body, .panel-body{
+        text-align: center;
+        width: 100%;
+        background: -webkit-linear-gradient(left, #22d686, #24d3d3, #22d686, #24d3d3);
+        background: linear-gradient(to right, #22d686, #24d3d3, #22d686, #24d3d3);
+        background-size: 600% 100%;
+        -webkit-animation: HeroBG 20s ease infinite;
+        animation: HeroBG 20s ease infinite;
+    }
+</style>
+</head>
+
+<div class="jumbotron">
+    <h1 class="display-3">
+            <h2>Child Name: Payam</h2>
+            <img src="blankavatar.png" class="img-circle" alt="child" width="50%" height="50%"> 
+<div id="chronoExample">
+    <div class="panel panel-default">
+    <div class="panel-heading">
+            <h2>Productive Time Counter</h2>
+            <h1 class="panel-title" id="values">00:00:00</h1>
+    </div>
+    <div class="panel-body">
+        <button type="button" class="btn btn-lg btn-success" id="startButton">Start</button>
+        <button type="button" class="btn btn-lg btn-info" id="pauseButton">Pause</button>
+        <button type="button" class="btn btn-lg btn-danger" id="stopButton">Stop</button>
+    </div>
+</div>
+    <div class="container">
+        <button type="button" class="btn btn-lg btn-warning" data-toggle="modal" data-target="#bankTimeModal" id="bankButton">Bank Time</button>
+
+        <!-- Modal -->
+<div class="modal fade" id="bankTimeModal" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Is your amount of productive time accurate?</h4>
+            </div>
+            <div class="modal-body">
+                <h1 id="values">00:00:00</h1>
+              <p>Please adjust your time as needed and enter the amount of time you want to log below!</p>
+              <input class="form-control" type="text" placeholder="Please enter the amount of time in MINUTES!">
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Submit to Bank Time</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Go Back</button>
+            </div>
+          </div>
+        </div>
+    </div>
+    </div>
+
+    <br>
+    <br>
+
+<button type="button" class="btn btn-lg btn-circle">Change Task</button>
+<button type="button" class="btn btn-lg btn-circle">Change Child</button>
+</h1>
+</div>
+</body>
+
+
+
+<script src="dist/easytimer.min.js"></script>
+<script>
+    var timerInstance = new Timer();
+$('#chronoExample #startButton').click(function () {
+    timerInstance.start();
+});
+$('#chronoExample #pauseButton').click(function () {
+    timerInstance.pause();
+});
+$('#chronoExample #stopButton').click(function () {
+    timerInstance.stop();
+});
+$('#chronoExample #bankButton').click(function () {
+    timerInstance.pause();
+});
+timerInstance.addEventListener('secondsUpdated', function (e) {
+    $('#chronoExample #values').html(timerInstance.getTimeValues().toString());
+});
+timerInstance.addEventListener('started', function (e) {
+    $('#chronoExample #values').html(timerInstance.getTimeValues().toString());
+});
+timerInstance.addEventListener('reset', function (e) {
+    $('#chronoExample #values').html(timerInstance.getTimeValues().toString());
+}); 
+</script>
+</html>
