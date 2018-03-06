@@ -75,8 +75,8 @@ module.exports = function (app) {
 
   app.post("/addChild", function (req, res) {
     db.Child.create({
-      name: req.body.username,
-      foreignKey: req.user.id
+      name: req.body.name,
+      foreignKey: 
     })
   });
 
