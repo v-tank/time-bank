@@ -8,6 +8,8 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var session = require("express-session");
 var passport = require("passport");
+// var local = require("passport-local");
+
 
 // Sets up the Express App
 // =============================================================
@@ -25,7 +27,9 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 // Set middleware
 app.use(session({
-	secret: "best app ever"
+	secret: "secret",
+	saveUninitalized: true,
+	resave: true
 }));
 
 // Set passport middleware 
