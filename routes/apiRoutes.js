@@ -37,7 +37,6 @@ module.exports = function (app) {
       name: req.body.username,
       password: req.body.password
     }).then(function (user) {
-      console.log("in here");
       res.render("profile", {
         name: user.name
       });
@@ -47,6 +46,7 @@ module.exports = function (app) {
       // res.status(422).json(err.errors[0].message);
     });
   });
+
 
   // Route for logging user out
   app.get("/logout", function (req, res) {
@@ -65,8 +65,43 @@ module.exports = function (app) {
       // Sending back a password, even a hashed password, isn't a good idea
       res.json({
         name: req.user.name,
-        id: req.parent.id
+        id: req.user.id
       });
     }
   });
+
+  app.get("/addChild", function (req, res) {
+    res.render("addChild");
+  }); 
+
+  app.post("/addChild", function (req, res) {
+    db.Child.create({
+      name: req.body.name,
+      foreignKey: 
+    })
+  });
+
+  app.get("/earnIt", function (req, res) {
+    res.render("earnIt", {title: "earn it"});
+  });
+
+  app.get("/spendId", function (req, res) {
+    res.render("earnIt", {title: "spend it"});
+  });
+
+  app.get("/report", function (req, res) {
+    res.render("report")
+  });
+
+
+  app.post("/signup", function(req, res) {
+    db.Parent.create({
+        name: req.body.name,
+        password: req.body.password
+      })
+      .then(function(dbPost) {
+        res.json(dbPost);
+      });
+  });
 }
+
