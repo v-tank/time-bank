@@ -1,41 +1,55 @@
-<a href="/signup">Sign Up</a>
-<a href="/login">Login</a>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="icon" href="../public/img/giphy.gif">
+	<link rel="stylesheet" href="../public/css/style.css" type="text/css"/>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	<title>Time Bank</title>
+
+</head>
+<body>
+<!-- <a href="/signup">Sign Up</a>
+<a href="/login">Login</a> -->
 
 <div class="container">
-    <!--Logo-->
-    <div class="row">
-        <div class="col-md-12">
-            <img src="img/giphy.gif" id="logo" alt="bank_time_logo">
-        </div>
-    </div>
-    
-    <!--sign up and login buttons-->
-    <div class="row">
-        <div class="col-md-5">
-            <button class="btn btn-Danger" id="page-sign-up-btn" data-toggle="modal" data-target="#modalSignUpForm">Sign Up</button>
-        </div>
+	<!--Logo-->
+	<div class="row">
+		<div class="col-md-12">
+			<img src="../public/assets/img/giphy.gif" id="logo" alt="bank_time_logo">
+		</div>
+	</div>
+	
+	<!--sign up and login buttons-->
+	<div class="row">
+		<div class="col-md-5">
+			<button class="btn btn-Danger" id="page-sign-up-btn" data-toggle="modal" data-target="#modalSignUpForm">Sign Up</button>
+		</div>
 
-        <div class="col-md-5">
-            <button class="btn btn-Danger" id="page-login-btn" data-toggle="modal" data-target="#modalLoginForm">Login</button>
-        </div>
-    </div>
+		<div class="col-md-5">
+			<button class="btn btn-Danger" id="page-login-btn" data-toggle="modal" data-target="#modalLoginForm">Login</button>
+		</div>
+	</div>
 
-    <!--Productive time button-->
-    <div class="row">
-        <div class="col-md-5">
-            <a href="#">
-                <img src="img/pt.png" alt="Productive time image" id="productiv_time_img">
-            </a>            
-        </div>
-        <div class="col-md-5">
-            <a href="#">
-                <img src="img/B.jpg" alt="bank time image" id="bank_time_img">
-            </a>
-        </div>
+	<!--Productive time button-->
+	<div class="row">
+		<div class="col-md-5">
+			<a href="#">
+				<img src="../public/assets/img/pt.png" alt="Productive time image" id="productiv_time_img">
+			</a>			
+		</div>
+		<div class="col-md-5">
+			<a href="#">
+				<img src="../public/assets/img/B.jpg" alt="bank time image" id="bank_time_img">
+			</a>
+		</div>
 
-    </div>
+	</div>
 
-    <!-- Modals -->
+	<!-- Modals -->
 
     <!-- Login Modal -->
     <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -51,7 +65,7 @@
                     <div class="md-form">
                         <i class="fa fa-envelope prefix grey-text"></i>
                         <input type="text" id="username-login-input" class="form-control validate">
-                        <label data-error="wrong" data-success="right" for="defaultForm-email">Your Email</label>
+                        <label data-error="wrong" data-success="right" for="defaultForm-email">Your username</label>
                     </div>
 
                     <div class="md-form">
@@ -82,7 +96,7 @@
                     <div class="md-form">
                         <i class="fa fa-envelope prefix grey-text"></i>
                         <input type="text" id="username-signup-input" class="form-control validate">
-                        <label data-error="wrong" data-success="right" for="defaultForm-email">Your Email</label>
+                        <label data-error="wrong" data-success="right" for="defaultForm-email">Your username</label>
                     </div>
 
                     <div class="md-form">
@@ -99,3 +113,12 @@
         </div>
     </div>
 </div>
+     
+
+</body>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="../public/js/app.js"></script>
+</html>
