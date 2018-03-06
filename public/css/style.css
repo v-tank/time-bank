@@ -125,6 +125,10 @@ label {
   margin: 30px;
 }
 
+.card-title {
+  font-size: 40px;
+}
+
 .card-login>.card-heading {
   color: #848c9d;
   background-color: #e8e9ec;
