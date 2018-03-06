@@ -13,6 +13,7 @@ module.exports = function (app) {
   });
 
   app.get("/login", function (req, res) {
+
     // If the user already has an account send them to the profile page
     // res.redirect("/profile");
     res.render("index");
@@ -35,9 +36,11 @@ module.exports = function (app) {
     db.Parent.create({
       name: req.body.username,
       password: req.body.password
-    }).then(function () {
+    }).then(function (user) {
       console.log("in here");
-      res.redirect("/login");
+      res.render("profile", {
+        name: user.name
+      });
     }).catch(function (err) {
       console.log(err);
       res.json(err);
