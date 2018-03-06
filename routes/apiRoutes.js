@@ -64,10 +64,35 @@ module.exports = function (app) {
       // Sending back a password, even a hashed password, isn't a good idea
       res.json({
         name: req.user.name,
-        id: req.parent.id
+        id: req.user.id
       });
     }
   });
 
-  
-}
+  app.get("/addChild", function (req, res) {
+    res.render("addChild");
+  }); 
+
+  app.post("/addChild", function (req, res) {
+    db.Child.create({
+      name: req.body.username,
+      foreignKey: req.user.id
+    })
+  });
+
+  app.get("/earnIt", function (req, res) {
+    res.render("earnIt", {title: "earn it"});
+  });
+
+  app.get("/spendId", function (req, res) {
+    res.render("earnIt", {title: "spend it"});
+  });
+
+  app.get("/report", function (req, res) {
+    res.render("report")
+  });
+
+
+
+
+
