@@ -1,4 +1,6 @@
+
 var bcrypt = require('bcrypt-nodejs');
+
 
 module.exports = function (sequelize, DataTypes) {
   var Parent = sequelize.define("Parent", {
@@ -11,9 +13,49 @@ module.exports = function (sequelize, DataTypes) {
     password: {
       type: DataTypes.STRING,
       allowNull: false,
+      // allowNull: false,
+      // validate: {
+      //   notNull: false
+      // },
       required: true
     }
-  });
+    // weight_task_1: {
+    //   type: DataTypes.DECIMAL(3,2),
+    //   validate: {
+    //     notNull: false
+    //   }
+    // },
+    // weight_task_2: {
+    //   type: DataTypes.DECIMAL(3, 2),
+    //   validate: {
+    //     notNull: false
+    //   }
+    // },
+    // weight_task_3: {
+    //   type: DataTypes.DECIMAL(3, 2),
+    //   validate: {
+    //     notNull: false
+    //   }
+    // },
+    // weight_task_4: {
+    //   type: DataTypes.DECIMAL(3, 2),
+    //   validate: {
+    //     notNull: false
+    //   }
+    // },
+    // weight_task_5: {
+    //   type: DataTypes.DECIMAL(3, 2),
+    //   validate: {
+    //     notNull: false
+    //   }
+    // },
+    // weight_task_6: {
+    //   type: DataTypes.DECIMAL(3, 2),
+    //   validate: {
+    //     notNull: false
+    //   }
+    // },
+    }
 
   Parent.prototype.validPassword = function(password) {
     return bcrypt.compareSync(password, this.password);
@@ -25,4 +67,4 @@ module.exports = function (sequelize, DataTypes) {
   });
 
   return Parent;
-};
+ });

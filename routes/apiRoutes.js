@@ -47,6 +47,7 @@ module.exports = function (app) {
     });
   });
 
+
   // Route for logging user out
   app.get("/logout", function (req, res) {
     req.logout();
@@ -93,6 +94,14 @@ module.exports = function (app) {
   });
 
 
-
-
+  app.post("/signup", function(req, res) {
+    db.Parent.create({
+        name: req.body.name,
+        password: req.body.password
+      })
+      .then(function(dbPost) {
+        res.json(dbPost);
+      });
+  });
+}
 
