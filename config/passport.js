@@ -5,7 +5,7 @@ var db = require("../models");
 passport.use(new LocalStrategy(
   // Our user will sign in using an name, rather than a "username"
   {
-    usernameField: "name"
+    usernameField: "name",
   },
   function(name, password, done) {
     // When a user tries to sign in this code runs
@@ -14,6 +14,7 @@ passport.use(new LocalStrategy(
         name: name
       }
     }).then(function(dbParent) {
+      // console.log("In passport");
       // If there's no user with the given email
       if (!dbParent) {
         return done(null, false, {
