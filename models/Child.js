@@ -2,10 +2,7 @@ module.exports = function (sequelize, DataTypes) {
   var Child = sequelize.define("Child", {
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: true
-      }
+      allowNull: false
     }
   });
 
