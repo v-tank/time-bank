@@ -24,12 +24,18 @@ module.exports = function (app) {
     res.render("profile");
   });
 
-  app.post("/login", passport.authenticate("local"), function (req, res) {
-    // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
-    // So we're sending the user back the route to the profile page because the redirect will happen on the front end
-    // They won't get this or even be able to access this page if they aren't authed
-    res.render("profile", { name: req.body.name });
-  });
+  app.post('/login',
+    passport.authenticate('local', { failureRedirect: '/' }),
+    function (req, res) {
+      res.render("profile");
+    });
+    
+  // app.post("/login", passport.authenticate("local"), { failureRedirect: '/' }), function (req, res) {
+  //   // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
+  //   // So we're sending the user back the route to the profile page because the redirect will happen on the front end
+  //   // They won't get this or even be able to access this page if they aren't authed
+  //   res.render("profile");
+  // });
 
   app.post("/signup", function (req, res) {
     console.log(req.body);
@@ -37,16 +43,15 @@ module.exports = function (app) {
       name: req.body.username,
       password: req.body.password
     }).then(function (user) {
-      res.render("profile", {
-        name: user.name
-      });
+      // console.log("in here");
+      res.render("profile");
     }).catch(function (err) {
-      console.log(err);
-      res.json(err);
-      // res.status(422).json(err.errors[0].message);
+      // console.log(err);
+      // res.json(err);
+      console.log(err.errors[0].message);
+      res.render("index", {alert: err.errors[0].message});
     });
   });
-
 
   // Route for logging user out
   app.get("/logout", function (req, res) {
@@ -65,43 +70,8 @@ module.exports = function (app) {
       // Sending back a password, even a hashed password, isn't a good idea
       res.json({
         name: req.user.name,
-        id: req.user.id
+        id: req.parent.id
       });
     }
   });
-
-  app.get("/addChild", function (req, res) {
-    res.render("addChild");
-  }); 
-
-  // app.post("/addChild", function (req, res) {
-  //   db.Child.create({
-  //     name: req.body.name,
-  //     foreignKey: 
-  //   }).then
-  // });
-
-  app.get("/earnIt", function (req, res) {
-    res.render("earnIt", {title: "earn it"});
-  });
-
-  app.get("/spendId", function (req, res) {
-    res.render("earnIt", {title: "spend it"});
-  });
-
-  app.get("/report", function (req, res) {
-    res.render("report")
-  });
-
-
-  app.post("/signup", function(req, res) {
-    db.Parent.create({
-        name: req.body.name,
-        password: req.body.password
-      })
-      .then(function(dbPost) {
-        res.json(dbPost);
-      });
-  });
 }
-
