@@ -79,22 +79,26 @@ module.exports = function (app) {
     res.render("addChild");
   });
 
-  app.post("/addChild", function (req, res) {
-    db.Child.create({
-      name: req.body.name,
-      foreignKey: 
-    })
-  });
+  // app.post("/addChild", function (req, res) {
+  //   db.Child.create({
+  //     name: req.body.name,
+  //     foreignKey: 
+  //   })
+  // });
 
   app.get("/earnIt", function (req, res) {
     res.render("earnIt", { title: "earn it" });
   });
 
-  app.get("/spendId", function (req, res) {
-    res.render("earnIt", { title: "spend it" });
+  app.get("/spendIt", function (req, res) {
+    res.render("spendIt", { title: "spend it" });
   });
 
   app.get("/report", function (req, res) {
     res.render("report")
+  });
+
+  app.get("/help-FAQ", function (req, res) {
+    res.render("help-FAQ")
   });
 }
