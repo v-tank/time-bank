@@ -1,4 +1,7 @@
 $(document).ready(function(){
+	$("#login-form").on("submit", function(event) {
+		event.preventDefault();
+
 	var tasksCanvas = document.getElementById("tasksChart");
 
 	Chart.defaults.global.defaultFontFamily = "Lato";
@@ -11,8 +14,7 @@ $(document).ready(function(){
 	    ],
 	    datasets: [
 	      {
-	      	data: [30, 70],
-	        // data: {{productive_time}},
+	      	data: [20, 60],
 	        backgroundColor: [
 	            "#FF6384",
 	            "#63FF84"
@@ -24,5 +26,9 @@ $(document).ready(function(){
 	  type: 'pie',
 	  data: tasksData
 	});
+
+
+	});
+
 
 });
