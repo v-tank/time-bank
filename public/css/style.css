@@ -265,16 +265,16 @@ h1 {
   font-size: 60px;
 }
 
-<<<<<<< HEAD
-.jumbotron {
+.jumbotron, .panel-body {
+  text-align: center;
   width: 100%;
   background: -webkit-linear-gradient(left, #22d686, #24d3d3, #22d686, #24d3d3);
   background: linear-gradient(to right, #22d686, #24d3d3, #22d686, #24d3d3);
   background-size: 600% 100%;
   -webkit-animation: HeroBG 20s ease infinite;
   animation: HeroBG 20s ease infinite;
-=======
-.menu {
+
+  .menu {
   color: #2d3b55;
   font-size: 32px;
   float: right !important;
@@ -296,5 +296,4 @@ h1 {
   /* Vertically center the text there */
   background-color: #2D3B55;
   color: #fff;
->>>>>>> 89207eff9ba5b20a4100bfc372ac08f9b2cb25b1
 }
