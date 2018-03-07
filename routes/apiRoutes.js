@@ -74,4 +74,27 @@ module.exports = function (app) {
       });
     }
   });
+
+  app.get("/addChild", function (req, res) {
+    res.render("addChild");
+  });
+
+  app.post("/addChild", function (req, res) {
+    db.Child.create({
+      name: req.body.name,
+      foreignKey: 
+    })
+  });
+
+  app.get("/earnIt", function (req, res) {
+    res.render("earnIt", { title: "earn it" });
+  });
+
+  app.get("/spendId", function (req, res) {
+    res.render("earnIt", { title: "spend it" });
+  });
+
+  app.get("/report", function (req, res) {
+    res.render("report")
+  });
 }
