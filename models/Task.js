@@ -6,10 +6,7 @@ module.exports = function (sequelize, DataTypes) {
     },
     task_weight: {
       type: DataTypes.DECIMAL(3, 2),
-      allowNull: false,
-      validate: {
-        notNull: true
-      }
+      allowNull: false
     }, 
     productive_time: {
       type: DataTypes.INTEGER
