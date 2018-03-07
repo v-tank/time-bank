@@ -264,3 +264,9 @@ h1 {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 60px;
 }
+
+.menu {
+  color: #2d3b55;
+  font-size: 32px;
+  float: right !important;
+}
