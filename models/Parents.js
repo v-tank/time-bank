@@ -15,6 +15,10 @@ module.exports = function (sequelize, DataTypes) {
     }
   });
 
+  Parent.associate = function (models) {
+    Parent.hasMany(models.Child);
+  };
+
   Parent.prototype.validPassword = function(password) {
     return bcrypt.compareSync(password, this.password);
   };
