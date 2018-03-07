@@ -297,3 +297,7 @@ h1 {
   background-color: #2D3B55;
   color: #fff;
 }
+
+#bankTimeModal {
+  background-color: orange;
+}

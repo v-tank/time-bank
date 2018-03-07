@@ -74,9 +74,6 @@ module.exports = function (app) {
       });
     }
   });
-<<<<<<< HEAD
-}
-=======
 
   app.get("/addChild", function (req, res) {
     res.render("addChild");
@@ -101,8 +98,15 @@ module.exports = function (app) {
     res.render("report")
   });
 
+  app.get("/calculator", function (req, res) {
+    res.render("calculator")
+  });
+
+  app.get("/earnTimer", function (req, res) {
+    res.render("earnTimer")
+  });
+
   app.get("/help-FAQ", function (req, res) {
     res.render("help-FAQ")
   });
 }
->>>>>>> 89207eff9ba5b20a4100bfc372ac08f9b2cb25b1
