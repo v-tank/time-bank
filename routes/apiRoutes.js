@@ -12,24 +12,66 @@ module.exports = function (app) {
     res.render("index")
   });
 
-  app.get("/login", function (req, res) {
+  // app.get("/login", function (req, res) {
 
-    // If the user already has an account send them to the profile page
-    // res.redirect("/profile");
-    res.render("index");
-  });
+  //   // If the user already has an account send them to the profile page
+  //   // res.redirect("/profile");
+  //   res.render("index");
+  // });
 
-  app.get("/profile", isAuthenticated, function (req, res) {
+  app.get("/profile/:id", isAuthenticated, function (req, res) {
     // console.log(res);
-    res.render("profile");
+    res.render("profile", {id: req.params.id});
+    
   });
 
-  app.post('/login',
-    passport.authenticate('local', { failureRedirect: '/' }),
-    function (req, res) {
-      res.render("profile");
+  app.post("/addChild", function(req, res) {
+    // console.log(req.user);
+    console.log(req.body.array);
+
+    db.Child.create({
+      name: req.body.name,
+      ParentId: req.user.id
+    }).then(function(results) {
+      // console.log(results);
+      db.Child.findOne({
+        where: {
+          name: req.body.name
+        }
+      }).then(function (results) {
+        // console.log(req.body.array);
+        // console.log(results);
+        db.Task.create({
+          name: req.body.array[1],
+          task_weight: req.body.exercise,
+          ChildId: results.id
+        })
+
+        db.Task.create({
+          name: req.body.array[2],
+          task_weight: req.body.reading,
+          ChildId: results.id
+        })
+        
+      })
+    });
+  });
+
+  app.post('/',
+    passport.authenticate('local', { failureRedirect: '/' }), function (req, res) {
+      db.Parent.findOne({
+        where: {
+          name: req.body.name
+        }
+      }).then(function(results) {
+        // res.json(results);
+        // console.log(results.id);
+        res.redirect("/profile/" + results.id );
+      })
+      // console.log(res.body);
     });
     
+
   // app.post("/login", passport.authenticate("local"), { failureRedirect: '/' }), function (req, res) {
   //   // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
   //   // So we're sending the user back the route to the profile page because the redirect will happen on the front end
@@ -75,16 +117,30 @@ module.exports = function (app) {
     }
   });
 
-  app.get("/addChild", function (req, res) {
-    res.render("addChild");
-  });
+  // app.get("/:id/addChild", function (req, res) {
+  //   // console.log(req);
+  //   res.render("addChild");
 
-  // app.post("/addChild", function (req, res) {
-  //   db.Child.create({
-  //     name: req.body.name,
-  //     foreignKey: 
-  //   })
   // });
+
+  // app.post("/addChild/:id", function (req, res) {
+  //   console.log(req.body);
+  //   console.log(req.params.id);
+  //   // db.Child.create({
+  //   //   name: req.body.name,
+  //   //   foreignKey: 
+  //   // })
+  // });
+
+  app.get("/children", function(req, res) {
+    db.Child.findAll({
+      where: {
+        ParentId: req.user.id
+      }
+    }).then(function(results) {
+      res.json(results);
+    });
+  });
 
   app.get("/earnIt", function (req, res) {
     res.render("earnIt", { title: "earn it" });
@@ -99,6 +155,6 @@ module.exports = function (app) {
   });
 
   app.get("/help-FAQ", function (req, res) {
-    res.render("help-FAQ")
+    res.render("report")
   });
 }
