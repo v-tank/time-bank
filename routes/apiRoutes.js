@@ -155,6 +155,6 @@ module.exports = function (app) {
   });
 
   app.get("/help-FAQ", function (req, res) {
-    res.render("report")
+    res.render("help-FAQ")
   });
 }
