@@ -150,17 +150,17 @@ module.exports = function (app) {
     res.render("spendIt", { title: "spend it" });
   });
 
-  app.get("/report", function (req, res) {
-    //grapping the total productive time from Tasks table,then show it on the chart
-    db.Task.findOne({
-      where: {
-        productive_time: req.body.productive_time
-      }
-    }).then(function(dbTask) {
-       res.render("report", dbTask);
-    });
+  // app.get("/report", function (req, res) {
+  //   //grapping the total productive time from Tasks table,then show it on the chart
+  //   db.Task.findOne({
+  //     where: {
+  //       productive_time: req.body.productive_time
+  //     }
+  //   }).then(function(dbTask) {
+  //      res.render("report", dbTask);
+  //   });
 
-  });
+  // });
 
   app.get("/help-FAQ", function (req, res) {
     res.render("help-FAQ")
