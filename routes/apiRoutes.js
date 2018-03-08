@@ -91,7 +91,7 @@ module.exports = function (app) {
       // console.log(err);
       // res.json(err);
       console.log(err.errors[0].message);
-      res.render("index", {alert: err.errors[0].message});
+      res.render("index", { alert: err.errors[0].message });
     });
   });
 
@@ -142,25 +142,26 @@ module.exports = function (app) {
     });
   });
 
-  app.get("/earnIt", function (req, res) {
-    res.render("earnIt", { title: "earn it" });
+  app.get("/earnIt/:id", function (req, res) {
+    console.log("here");
+    res.render("earnIt", {title: "Hello"});
   });
 
-  app.get("/spendIt", function (req, res) {
+  app.get("/spendIt/:id", function (req, res) {
     res.render("spendIt", { title: "spend it" });
   });
 
-  app.get("/report", function (req, res) {
-    //grapping the total productive time from Tasks table,then show it on the chart
-    db.Task.findOne({
-      where: {
-        productive_time: req.body.productive_time
-      }
-    }).then(function(dbTask) {
-       res.render("report", dbTask);
-    });
+  // app.get("/report", function (req, res) {
+  //   //grapping the total productive time from Tasks table,then show it on the chart
+  //   db.Task.findOne({
+  //     where: {
+  //       productive_time: req.body.productive_time
+  //     }
+  //   }).then(function(dbTask) {
+  //      res.render("report", dbTask);
+  //   });
 
-  });
+  // });
 
   app.get("/calculator", function (req, res) {
     res.render("calculator")

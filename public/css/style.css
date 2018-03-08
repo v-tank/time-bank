@@ -12,8 +12,8 @@ body {
   /* padding-top: 10px; */
   width: 100%;
   height: 100%;
-  background: -webkit-linear-gradient(left, #22d686, #24d3d3, #22d686, #24d3d3);
-  background: linear-gradient(to right, #22d686, #24d3d3, #22d686, #24d3d3);
+  background: -webkit-linear-gradient(left, #daf8e4, #caf7da,  #adf7c8, #93f9b8);
+  background: linear-gradient(to right, #93f9b8, #adf7c8, #caf7da, #daf8e4);
   background-size: 600% 100%;
   -webkit-animation: HeroBG 20s ease infinite;
   animation: HeroBG 20s ease infinite;
@@ -155,7 +155,7 @@ h2 {
 
 .card-login>.card-heading .login {
   padding: 20px 30px;
-  border-bottom-leftt-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 
 .card-login>.card-heading .register {
@@ -272,6 +272,7 @@ h1 {
   font-size: 60px;
 }
 
+<<<<<<< HEAD
 .jumbotron, .panel-body {
   text-align: center;
   width: 100%;
@@ -283,15 +284,19 @@ h1 {
 
   .menu {
   color: #2d3b55;
+=======
+.menu {
+  color: #64bf60;
+>>>>>>> e560b5057f35bb6167d1a480b202264a0214401a
   font-size: 32px;
   float: right;
 }
 
-.logo {
+/* .logo {
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 50%;
   border: 10px #2D3B55 solid;
-}
+} */
 
 .footer {
   position: absolute;
