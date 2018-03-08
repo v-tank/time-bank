@@ -142,11 +142,11 @@ module.exports = function (app) {
     });
   });
 
-  app.get("/earnIt", function (req, res) {
+  app.get("/earnIt/:id", function (req, res) {
     res.render("earnIt", { title: "earn it" });
   });
 
-  app.get("/spendIt", function (req, res) {
+  app.get("/spendIt/:id", function (req, res) {
     res.render("spendIt", { title: "spend it" });
   });
 
