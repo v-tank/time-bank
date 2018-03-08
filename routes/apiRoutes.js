@@ -86,7 +86,17 @@ module.exports = function (app) {
       password: req.body.password
     }).then(function (user) {
       // console.log("in here");
-      res.render("profile");
+      console.log(user.name);
+      db.Parent.findOne({
+        where: {
+          name: user.name
+        }
+      }).then(function (results) {
+        // res.json(results);
+        console.log(results.name + results.id);
+        res.redirect("/profile/" + results.id);
+      });
+      
     }).catch(function (err) {
       // console.log(err);
       // res.json(err);
@@ -150,17 +160,17 @@ module.exports = function (app) {
     res.render("spendIt", { title: "spend it" });
   });
 
-  app.get("/report", function (req, res) {
-    //grapping the total productive time from Tasks table,then show it on the chart
-    db.Task.findOne({
-      where: {
-        productive_time: req.body.productive_time
-      }
-    }).then(function(dbTask) {
-       res.render("report", dbTask);
-    });
+  // app.get("/report", function (req, res) {
+  //   //grapping the total productive time from Tasks table,then show it on the chart
+  //   db.Task.findOne({
+  //     where: {
+  //       productive_time: req.body.productive_time
+  //     }
+  //   }).then(function(dbTask) {
+  //      res.render("report", dbTask);
+  //   });
 
-  });
+  // });
 
   app.get("/help-FAQ", function (req, res) {
     res.render("help-FAQ")
