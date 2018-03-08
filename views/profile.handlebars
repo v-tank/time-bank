@@ -7,7 +7,6 @@
   </div> --}}
 
   <div class="row justify-content-center p-4">
-    <h2>Welcome, {{id}}!</>
     <center>
       <select data-placeholder="" class="form-control valid-select" id="dropdown">
         <option value="" selected disabled>Select an Option</option>
@@ -18,8 +17,9 @@
   <!-- Two image buttons -->
   <div class="row">
       <div class="col-xs-2 mx-auto">
-          
-              <img id="earnit-img" class="image" src="/assets/images/earnit2.png" alt="earnit">
+          <a id="earnit-img" href="/earnIt/{{user}}">
+              <img class="image" src="/assets/images/earnit2.png" alt="earnit">
+              </a>
 
           {{!-- <h2 class="text-center m-2">EARN IT</h2> --}}
       </div>
