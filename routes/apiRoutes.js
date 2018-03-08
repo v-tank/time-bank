@@ -86,22 +86,12 @@ module.exports = function (app) {
       password: req.body.password
     }).then(function (user) {
       // console.log("in here");
-      console.log(user.name);
-      db.Parent.findOne({
-        where: {
-          name: user.name
-        }
-      }).then(function (results) {
-        // res.json(results);
-        console.log(results.name + results.id);
-        res.redirect("/profile/" + results.id);
-      });
-      
+      res.render("profile");
     }).catch(function (err) {
       // console.log(err);
       // res.json(err);
       console.log(err.errors[0].message);
-      res.render("index", {alert: err.errors[0].message});
+      res.render("index", { alert: err.errors[0].message });
     });
   });
 
@@ -153,7 +143,8 @@ module.exports = function (app) {
   });
 
   app.get("/earnIt/:id", function (req, res) {
-    res.render("earnIt", { title: "earn it" });
+    console.log("here");
+    res.render("earnIt", {title: "Hello"});
   });
 
   app.get("/spendIt/:id", function (req, res) {
