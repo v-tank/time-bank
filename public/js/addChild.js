@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  getChildren();
+  // getChildren();
 
   $("#add-child-submit").on("click", function(event) {
     event.preventDefault();

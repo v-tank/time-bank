@@ -3,15 +3,25 @@
   <div class="row">
   	<div class="col-md-12">
       <h1 class="text-white">Tasks Chart</h1>
-  		<h4 class="text-white">Total Productive Time: {{productive_time}}</h4>
-  		
+      
+  		<h4 class="text-white">Total Productive Time: {{total}}</h4>
+
+
+     <script type="text/javascript">
+        var name1 = "{{dbTask.[0].name}}";
+        var name2 = "{{dbTask.[1].name}}";
+        var pt1 = "{{dbTask.[0].productive_time}}";
+        var pt2 = "{{dbTask.[1].productive_time}}";
+  		</script>
+
   	</div>
   </div>
 	<div class="row justify-content-center">
-	  <div class="chart-container" style="position: relative; height:15vh; width:25vw">
+	  <div class="chart-container" style="position: relative; height:25vh; width:35vw">
 			<canvas id="tasksChart"></canvas>
 		</div>
 	</div>
 </center>
 
 </div>
+
