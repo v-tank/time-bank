@@ -86,7 +86,17 @@ module.exports = function (app) {
       password: req.body.password
     }).then(function (user) {
       // console.log("in here");
-      res.render("profile");
+      console.log(user.name);
+      db.Parent.findOne({
+        where: {
+          name: user.name
+        }
+      }).then(function (results) {
+        // res.json(results);
+        console.log(results.name + results.id);
+        res.redirect("/profile/" + results.id);
+      });
+      
     }).catch(function (err) {
       // console.log(err);
       // res.json(err);
