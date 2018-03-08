@@ -21,13 +21,14 @@
     "bcrypt-nodejs": "0.0.3",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.2",
+    "chart.js": "^2.7.2",
     "express": "^4.16.2",
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.6",
     "mysql2": "^1.5.2",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
-    "sequelize": "^4.35.1",
+    "sequelize": "^4.35.2",
     "sequelize-cli": "^4.0.0"
   }
 }
