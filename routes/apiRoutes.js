@@ -151,10 +151,18 @@ module.exports = function (app) {
   });
 
   app.get("/report", function (req, res) {
-    res.render("report")
+    //grapping the total productive time from Tasks table,then show it on the chart
+    db.Task.findOne({
+      where: {
+        productive_time: req.body.productive_time
+      }
+    }).then(function(dbTask) {
+       res.render("report", dbTask);
+    });
+
   });
 
   app.get("/help-FAQ", function (req, res) {
-    res.render("report")
+    res.render("help-FAQ")
   });
 }
