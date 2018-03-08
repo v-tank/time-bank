@@ -11,9 +11,10 @@
 body {
   /* padding-top: 10px; */
   width: 100%;
-  height: 100%;
   background: -webkit-linear-gradient(left, #daf8e4, #caf7da,  #adf7c8, #93f9b8);
   background: linear-gradient(to right, #93f9b8, #adf7c8, #caf7da, #daf8e4);
+/*   background: -webkit-linear-gradient(left, #22d686, #24d3d3, #22d686, #24d3d3);
+  background: linear-gradient(to right, #22d686, #24d3d3, #22d686, #24d3d3); */
   background-size: 600% 100%;
   -webkit-animation: HeroBG 20s ease infinite;
   animation: HeroBG 20s ease infinite;

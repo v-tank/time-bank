@@ -192,6 +192,14 @@ module.exports = function (app) {
 
   // });
 
+  app.get("/calculator", function (req, res) {
+    res.render("calculator")
+  });
+
+  app.get("/earnTimer", function (req, res) {
+    res.render("earnTimer")
+  });
+
   app.get("/help-FAQ", function (req, res) {
     res.render("help-FAQ")
   });
