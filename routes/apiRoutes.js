@@ -146,11 +146,35 @@ module.exports = function (app) {
   });
 
   app.get("/earnIt/:id", function (req, res) {
-    console.log(req.params);
+    // console.log(req.params);
+
     // console.log("======================================");
     // console.log(req.body);
-    res.render("earnIt", {id: req.params.id});
+
+    db.Child.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(result) {
+      // console.log(result.name);
+      res.render("earnIt", { id: req.params.id, name: result.name });
+    });
   });
+
+  app.put("/earnIt/:id", function (req, res) {
+      db.Task.update
+      ({
+        banked_time: "20",
+      }, 
+      { 
+        where: {
+          ChildId: req.params.id,
+          name: "exercise"
+        }
+      }).then(function (results) {
+        res.json(results);
+      });
+    });
 
   app.get("/spendIt/:id", function (req, res) {
     res.render("spendIt", { title: "spend it" });
