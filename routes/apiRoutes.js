@@ -5,11 +5,12 @@ var isAuthenticated = require("../config/middleware/isAuthenticated");
 module.exports = function (app) {
 
   app.get("/", function (req, res) {
+    console.log("At the root");
     // If the parent already has an account send them to the members page
-    if (req.user) {
-      res.redirect("/profile");
-    }
-    res.render("index")
+    // if (req.user) {
+    //   res.redirect("/profile");
+    // }
+    res.render("index");
   });
 
   // app.get("/login", function (req, res) {
@@ -86,12 +87,12 @@ module.exports = function (app) {
       password: req.body.password
     }).then(function (user) {
       // console.log("in here");
-      res.render("profile");
+      res.render("profile", {id: user.id});
     }).catch(function (err) {
       // console.log(err);
       // res.json(err);
       console.log(err.errors[0].message);
-      res.render("index", {alert: err.errors[0].message});
+      res.render("index", { alert: err.errors[0].message });
     });
   });
 
@@ -133,22 +134,53 @@ module.exports = function (app) {
   // });
 
   app.get("/children", function(req, res) {
-    db.Child.findAll({
-      where: {
-        ParentId: req.user.id
-      }
-    }).then(function(results) {
-      res.json(results);
-    });
+    if (req.user) {
+      db.Child.findAll({
+        where: {
+          ParentId: req.user.id
+        }
+      }).then(function (results) {
+        res.json(results);
+      });
+    }
   });
 
   app.get("/earnIt/:id", function (req, res) {
-    res.render("earnIt", { title: "earn it" });
+    // console.log(req.params);
+
+    // console.log("======================================");
+    // console.log(req.body);
+
+    db.Child.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(result) {
+      // console.log(result.name);
+      res.render("earnIt", { id: req.params.id, name: result.name });
+    });
   });
+
+  app.put("/earnIt/:id", function (req, res) {
+      db.Task.update
+      ({
+        banked_time: "20",
+      }, 
+      { 
+        where: {
+          ChildId: req.params.id,
+          name: "exercise"
+        }
+      }).then(function (results) {
+        res.json(results);
+      });
+    });
+
 
   app.get("/spendIt/:id", function (req, res) {
     res.render("spendIt", { title: "spend it" });
   });
+
 
   app.get("/report/:id", function (req, res) {
     //grapping the data from Tasks table, then show it on the chart
@@ -173,6 +205,12 @@ module.exports = function (app) {
         });
     });
 
+  app.get("/calculator", function (req, res) {
+    res.render("calculator")
+  });
+
+  app.get("/earnTimer", function (req, res) {
+    res.render("earnTimer")
   });
 
   app.get("/help-FAQ", function (req, res) {
