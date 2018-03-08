@@ -1,14 +1,12 @@
 $(document).ready(function() {
 
-  $("#earnit-img").on("click", function() {
+  $("#earnit-img").on("click", function(event) {
+    event.preventDefault();
+
     var childId = $("#dropdown").val();
-    console.log(childId);
 
-    $.get("/earnIt/" + childId, function(res) {
-      // console.log(res);
-    })
-  })
-  
-  
-
+    var url = "/earnIt/" + childId;
+    
+    window.location.href = url;
+  });
 });

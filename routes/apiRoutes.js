@@ -5,11 +5,12 @@ var isAuthenticated = require("../config/middleware/isAuthenticated");
 module.exports = function (app) {
 
   app.get("/", function (req, res) {
+    console.log("At the root");
     // If the parent already has an account send them to the members page
-    if (req.user) {
-      res.redirect("/profile");
-    }
-    res.render("index")
+    // if (req.user) {
+    //   res.redirect("/profile");
+    // }
+    res.render("index");
   });
 
   // app.get("/login", function (req, res) {
@@ -86,7 +87,7 @@ module.exports = function (app) {
       password: req.body.password
     }).then(function (user) {
       // console.log("in here");
-      res.render("profile");
+      res.render("profile", {id: user.id});
     }).catch(function (err) {
       // console.log(err);
       // res.json(err);
@@ -133,19 +134,47 @@ module.exports = function (app) {
   // });
 
   app.get("/children", function(req, res) {
-    db.Child.findAll({
-      where: {
-        ParentId: req.user.id
-      }
-    }).then(function(results) {
-      res.json(results);
-    });
+    if (req.user) {
+      db.Child.findAll({
+        where: {
+          ParentId: req.user.id
+        }
+      }).then(function (results) {
+        res.json(results);
+      });
+    }
   });
 
   app.get("/earnIt/:id", function (req, res) {
-    console.log("here");
-    res.render("earnIt", {title: "Hello"});
+    // console.log(req.params);
+
+    // console.log("======================================");
+    // console.log(req.body);
+
+    db.Child.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(result) {
+      // console.log(result.name);
+      res.render("earnIt", { id: req.params.id, name: result.name });
+    });
   });
+
+  app.put("/earnIt/:id", function (req, res) {
+      db.Task.update
+      ({
+        banked_time: "20",
+      }, 
+      { 
+        where: {
+          ChildId: req.params.id,
+          name: "exercise"
+        }
+      }).then(function (results) {
+        res.json(results);
+      });
+    });
 
   app.get("/spendIt/:id", function (req, res) {
     res.render("spendIt", { title: "spend it" });

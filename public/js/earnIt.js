@@ -584,20 +584,6 @@ return Timer;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //Earn timer functions
 
 var timerInstance = new Timer();
@@ -622,3 +608,34 @@ timerInstance.addEventListener('started', function (e) {
 timerInstance.addEventListener('reset', function (e) {
     $('#chronoExample #values').html(timerInstance.getTimeValues().toString());
 }); 
+
+
+
+$("#bank-it-button").on("click", function(event) {
+  event.preventDefault();
+  var valueToPush = "";
+  var url = window.location.href;
+
+  var queryString = url.split("/");
+  
+  // console.log(queryString);
+  var ID = queryString[queryString.length - 1];
+  console.log(ID);
+
+  if ($("#override-value").val().trim() === "") {
+    valueToPush = $("#values").val().trim();
+  } else {
+    valueToPush = $("#override-value").val().trim();
+  }
+
+  $.ajax({
+    method: "PUT",
+    url: "/earnIt/" + ID,
+    data: {
+      result: valueToPush
+    }
+  }).done(function(results) {
+    console.log(results);
+  });
+  
+})
