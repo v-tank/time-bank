@@ -176,21 +176,34 @@ module.exports = function (app) {
       });
     });
 
+
   app.get("/spendIt/:id", function (req, res) {
     res.render("spendIt", { title: "spend it" });
   });
 
-  // app.get("/report", function (req, res) {
-  //   //grapping the total productive time from Tasks table,then show it on the chart
-  //   db.Task.findOne({
-  //     where: {
-  //       productive_time: req.body.productive_time
-  //     }
-  //   }).then(function(dbTask) {
-  //      res.render("report", dbTask);
-  //   });
 
-  // });
+  app.get("/report/:id", function (req, res) {
+    //grapping the data from Tasks table, then show it on the chart
+    db.Task.findAll({
+      where: {
+        ChildId: req.params.id
+      }
+    }).then(function(dbTask) {
+      //this total productive time for the kid
+      var total = 0;
+      //create an emtpy array to hold the data from MySQL
+      var results = [];
+
+      //generating each index in the Task database
+      for (var i = 0; i < dbTask.length; i++) {
+        total += dbTask[i].productive_time;
+        results.push(dbTask[i]);
+      }
+       res.render("report", { 
+        total: total,
+        dbTask: results
+        });
+    });
 
   app.get("/calculator", function (req, res) {
     res.render("calculator")
