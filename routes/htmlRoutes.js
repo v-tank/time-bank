@@ -3,7 +3,7 @@ var path = require("path");
 
 module.exports = function (app, passport) {
   app.get("/calculator", function(req, res) {
-  	res.sendFile(path.join(__dirname, "calculator.html")); 
+  	res.render("calculator"); 
 	});
 
 	// app.get("/help-FAQ", function(req, res) {

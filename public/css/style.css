@@ -11,9 +11,14 @@
 body {
   /* padding-top: 10px; */
   width: 100%;
+
   height: 100%;
   background: -webkit-linear-gradient(left, #93f9b8, #7af8a7,  #64e894, #51e185);
   background: linear-gradient(right, #51e185, #64e894, #7af8a7, #93f9b8);
+
+/*   background: -webkit-linear-gradient(left, #22d686, #24d3d3, #22d686, #24d3d3);
+  background: linear-gradient(to right, #22d686, #24d3d3, #22d686, #24d3d3); */
+
   background-size: 600% 100%;
   -webkit-animation: HeroBG 20s ease infinite;
   animation: HeroBG 20s ease infinite;
@@ -297,6 +302,7 @@ h1 {
   padding-top: 25px;
   padding-bottom: 50px;
 }
+
 #spendit-img:hover, #earnit-img:hover {
   animation: shake 0.5s;
   animation-iteration-count: 1;
