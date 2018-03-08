@@ -3,12 +3,12 @@ var path = require("path");
 
 module.exports = function (app, passport) {
   app.get("/calculator", function(req, res) {
-  	res.sendFile(path.join(__dirname, "../public/calculator.html")); 
+  	res.sendFile(path.join(__dirname, "calculator.html")); 
 	});
 
-	app.get("/help-FAQ", function(req, res) {
-  	res.sendFile(path.join(__dirname, "../public/help-FAQ.html")); 
-	});
+	// app.get("/help-FAQ", function(req, res) {
+  // 	res.sendFile(path.join(__dirname, "../public/help-FAQ.html")); 
+	// });
 
 }
 
