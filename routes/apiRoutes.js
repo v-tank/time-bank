@@ -162,25 +162,22 @@ module.exports = function (app) {
   });
 
   app.put("/earnIt/:id", function (req, res) {
-      db.Task.update
-      ({
-        banked_time: "20",
-      }, 
-      { 
-        where: {
-          ChildId: req.params.id,
-          name: "exercise"
-        }
-      }).then(function (results) {
-        res.json(results);
-      });
+  db.Task.update({
+      banked_time: "20",
+    },
+    {
+      where: {
+        ChildId: req.params.id,
+        name: "exercise"
+      }
+    }).then(function (results) {
+      res.json(results);
     });
-
-
-  app.get("/spendIt/:id", function (req, res) {
-    res.render("spendIt", { title: "spend it" });
   });
 
+  app.get("/spendIt", function (req, res) {
+    res.render("spendIt");
+  });
 
   app.get("/report/:id", function (req, res) {
     //grapping the data from Tasks table, then show it on the chart
@@ -188,7 +185,9 @@ module.exports = function (app) {
       where: {
         ChildId: req.params.id
       }
-    }).then(function(dbTask) {
+
+    }).then(function (dbTask) {
+
       //this total productive time for the kid
       var total = 0;
       //create an emtpy array to hold the data from MySQL
@@ -199,18 +198,13 @@ module.exports = function (app) {
         total += dbTask[i].productive_time;
         results.push(dbTask[i]);
       }
-       res.render("report", { 
+
+      res.render("report", {
         total: total,
         dbTask: results
-        });
+      });
     });
 
-  app.get("/calculator", function (req, res) {
-    res.render("calculator")
-  });
-
-  app.get("/earnTimer", function (req, res) {
-    res.render("earnTimer")
   });
 
   app.get("/help-FAQ", function (req, res) {
