@@ -21,9 +21,7 @@ module.exports = function (app) {
   // });
 
   app.get("/profile/:id", isAuthenticated, function (req, res) {
-    // console.log(res);
-    res.render("profile", {id: req.params.id});
-    
+    res.render("profile", { id: req.params.id, user: req.user.name });
   });
 
   app.post("/addChild", function(req, res) {
