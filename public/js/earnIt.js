@@ -635,7 +635,7 @@ $("#bank-it-button").on("click", function(event) {
       result: valueToPush
     }
   }).done(function(results) {
-    console.log(results);
+    // console.log(results);
   });
   
 })
