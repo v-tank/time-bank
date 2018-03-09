@@ -185,7 +185,9 @@ module.exports = function (app) {
       where: {
         ChildId: req.params.id
       }
+
     }).then(function (dbTask) {
+
       //this total productive time for the kid
       var total = 0;
       //create an emtpy array to hold the data from MySQL
@@ -196,11 +198,13 @@ module.exports = function (app) {
         total += dbTask[i].productive_time;
         results.push(dbTask[i]);
       }
+
       res.render("report", {
         total: total,
         dbTask: results
       });
     });
+
   });
 
   app.get("/help-FAQ", function (req, res) {
