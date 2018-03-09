@@ -1,34 +1,28 @@
-$(document).ready(function(){
-	$("#login-form").on("submit", function(event) {
-		event.preventDefault();
+$(document).ready(function () {
 
-	var tasksCanvas = document.getElementById("tasksChart");
+  var tasksCanvas = document.getElementById("tasksChart");
 
-	Chart.defaults.global.defaultFontFamily = "Lato";
-	Chart.defaults.global.defaultFontSize = 18;
+  Chart.defaults.global.defaultFontFamily = "Lato";
+  Chart.defaults.global.defaultFontSize = 18;
+  //data from the Task fill into the pie
+  var tasksData = {
+    labels: [
+      name1,
+      name2
+    ],
+    datasets: [
+      {
+        data: [pt1, pt2],
+        backgroundColor: [
+          "#FF6384",
+          "#63FF84"
+        ]
+      }]
+  };
 
-	var tasksData = {
-	    labels: [
-	      "Activity",
-	      "Reading"
-	    ],
-	    datasets: [
-	      {
-	      	data: [20, 60],
-	        backgroundColor: [
-	            "#FF6384",
-	            "#63FF84"
-	        ]
-	      }]
-	};
-
-	var pieChart = new Chart(tasksCanvas, {
-	  type: 'pie',
-	  data: tasksData
-	});
-
-
-	});
-
+  var pieChart = new Chart(tasksCanvas, {
+    type: 'pie',
+    data: tasksData
+  });
 
 });
