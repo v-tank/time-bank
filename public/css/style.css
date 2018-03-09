@@ -347,3 +347,11 @@ h1 {
 #dropdown {
   width: 250px;
 }
+
+select option[disabled]:first-child {
+  display: none;
+}
+
+input {
+  text-align: center;
+}
