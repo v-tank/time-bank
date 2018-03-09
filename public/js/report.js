@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
 
   var tasksCanvas = document.getElementById("tasksChart");
@@ -24,5 +25,4 @@ $(document).ready(function () {
     type: 'pie',
     data: tasksData
   });
-
 });

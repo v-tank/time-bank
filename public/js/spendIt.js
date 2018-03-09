@@ -1,10 +1,12 @@
 $(document).ready(function () {
   pause_clock()
+
 });
 
 // 15 minutes, 30 seconds from now
 var time_in_minutes = 15.5;
 var current_time = Date.parse(new Date());
+
 var deadline = new Date(current_time + time_in_minutes * 60 * 1000);
 
 
@@ -34,6 +36,7 @@ run_clock('clockdiv', deadline);
 var paused = false; // is the clock paused?
 var time_left; // time left on the clock when paused
 
+
 function pause_clock() {
   if (!paused) {
     paused = true;
@@ -52,6 +55,7 @@ function resume_clock() {
     // start the clock
     run_clock('clockdiv', deadline);
   }
+
 }
 
 // handle pause and resume button clicks
