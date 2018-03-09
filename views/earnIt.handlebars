@@ -1,48 +1,116 @@
-<div class="jumbotron">
-    <h1 class="display-3">
-            <h2>Child Name: {{name}} </h2>
-            <img src="assets/Images/blankavatar.png" class="img-circle" alt="child" width="50%" height="50%"> 
-<div id="chronoExample">
-    <div class="panel panel-default">
-    <div class="panel-heading">
-      <h2>Productive Time Counter</h2>
-      <h1 class="panel-title" id="values">00:00:00</h1>
-    </div>
-    <div class="panel-body">
-      <button type="button" class="btn btn-lg btn-success" id="startButton">Start</button>
-      <button type="button" class="btn btn-lg btn-info" id="pauseButton">Pause</button>
-      <button type="button" class="btn btn-lg btn-danger" id="stopButton">Stop</button>
-    </div>
-</div>
-    <div class="container">
-        <button type="button" class="btn btn-lg btn-warning" data-toggle="modal" data-target="#bankTimeModal" id="bankButton">Bank Time</button>
+<div class="row">
+  <div class="col">
 
-        <!-- Modal -->
-      <div class="modal fade" id="bankTimeModal" role="dialog">
-        <div class="modal-dialog">
-        
-          <!-- Modal content-->
+  </div>
+  <div class="col">
+    <!-- Button trigger modal -->
+    <div class="menu">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Add a Child</button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Is your amount of productive time accurate?</h4>
+              <h5 class="modal-title" id="exampleModalLongTitle">Add a Child</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
             <div class="modal-body">
-                <h2 id="values" class="text-dark">00:00:00</h2>
-              <p>Please adjust your time as needed and enter the amount of time you want to log below!</p>
-              <input class="form-control" id="override-value" type="number" placeholder="Enter the adjusted amount of MINUTES of bank time...">
+              <form class="login" id="addChild-form" role="form" style="display: block;">
+                <center>
+                  <h2>ADD A CHILD</h2>
+                </center>
+                <div class="form-group">
+                  <input type="text" name="childName" id="childName" tabindex="1" class="form-control" placeholder="Name" value="">
+                </div>
+
+                <div class="form-group">
+                  <input type="text" name="exercise_multiplier" id="exercise_multiplier" tabindex="1" class="form-control" placeholder="Exercise Multiplier"
+                    value="">
+                </div>
+
+                <div class="form-group">
+                  <input type="text" name="reading_multiplier" id="reading_multiplier" tabindex="1" class="form-control" placeholder="Reading Multiplier"
+                    value="">
+                </div>
+              </form>
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn btn-primary" id="bank-it-button">Submit to Bank Time</button>
-              <button type="button" class="btn btn-default" data-dismiss="modal">Go Back</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" name="add-child-submit" id="add-child-submit">Add</button>
             </div>
           </div>
         </div>
+      </div>
+
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">
+        Menu
+      </button>
+
+      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" color="#2D3B55">
+        <a class="dropdown-item" href="/earnIt">Earn Time</a>
+        <a class="dropdown-item" href="/spendIt">Spend Time</a>
+        <a class="dropdown-item" href="/calculator">Calculate Bank Time</a>
+        <a class="dropdown-item" href="/report/17">Report</a>
+        <a class="dropdown-item" href="/help-FAQ">FAQ</a>
+        <a class="dropdown-item" href="/logout">Log Out</a>
+      </div>
     </div>
+  </div>
+</div>
+
+<div class="container text-center">
+  <div class="card" id="chronoExample">
+    <center>
+      <img src="../assets/Images/blankavatar.png" alt="Child image" width="350">
+    </center>
+    <div class="card-body">
+      <h5 class="card-title">{{name}}</h5>
+      <h3>Productive Time Counter</h3>
+        <h2 class="card-title" id="values">00:00:00</h2>
+        <div class="form-group">
+          <label for="exampleFormControlSelect1"><h4>Select a Task</h4></label>
+          <select class="form-control" id="exampleFormControlSelect1">
+            <option>Exercise</option>
+            <option>Reading</option>
+          </select>
+        </div>
     </div>
-    <br>
-    <br>
-<button type="button" class="btn btn-lg btn-circle">Change Task</button>
-<button type="button" class="btn btn-lg btn-circle">Change Child</button>
-</h1>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <button type="button" class="btn btn-lg btn-success" id="startButton">Start</button>
+        <button type="button" class="btn btn-lg btn-info" id="pauseButton">Pause</button>
+        <button type="button" class="btn btn-lg btn-danger" id="stopButton">Stop</button>
+      </li>
+    </ul>
+    <div class="card-body">
+      <button type="button" class="btn btn-lg btn-warning" data-toggle="modal" data-target="#bankTimeModal" id="bankButton">Bank Time</button>
+    </div>
+
+    <div class="modal fade" id="bankTimeModal" role="dialog">
+      <div class="modal-dialog">
+    
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Is your amount of productive time accurate?</h4>
+          </div>
+          <div class="modal-body">
+            <h2 id="values" class="text-dark text-center">00:00:00</h2>
+    
+            <p>Please adjust your time as needed and enter the amount of time you want to log below!</p>
+            <input class="form-control" id="override-value" type="number" placeholder="Enter the adjusted amount of MINUTES of bank time.">
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" data-dismiss="modal" id="bank-it-button">Submit to Bank Time</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Go Back</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

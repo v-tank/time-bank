@@ -1,22 +1,32 @@
-{{!-- <a href="/signup">Sign Up</a>
+{{!--
+<a href="/signup">Sign Up</a>
 <a href="/login">Login</a> --}}
-
+<div class="row">
+  <div class="col">
+    <center>
+      <div class="m-5" style="width: 300px; height: 300px;">
+        <a href="/profile">
+          <img src="/assets/images/logo.png" id="logo" alt="logo" width="300" height="300">
+        </a>
+      </div>
+    </center>
+  </div>
+</div>
 <div class="container">
-  <center><h1>Time Bank</h1></center>
+  <center>
+    <h1>Time Bank</h1>
+  </center>
   <div class="pt-5 row justify-content-center">
     <div class="col-md-6 ">
-
       {{#if alert}}
-        <div class="alert alert-danger" role="alert">
-          {{alert}}
-        </div>
+      <div class="alert alert-danger" role="alert">
+        {{alert}}
+      </div>
       {{/if}}
-
       <div class="card card-login">
         <div class="card-body">
           <div class="row">
             <div class="col-lg-12">
-
               <form class="login" id="login-form" method="post" role="form" style="display: block;" action="/">
                 <h2>LOGIN</h2>
                 <div class="form-group">
@@ -29,7 +39,6 @@
                   <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
                 </div>
               </form>
-
               <form class="signup" id="register-form" method="post" role="form" style="display: none;" action="/signup">
                 <h2>REGISTER</h2>
                 <div class="form-group">
@@ -49,7 +58,6 @@
             </div>
           </div>
         </div>
-
         <div class="card-heading">
           <div class="row">
             <div class="col-6 tabs">
