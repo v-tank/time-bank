@@ -3,7 +3,7 @@
 
 Time Bank was built as part of a project for UC Berkeley Coding Boot Camp. The purpose of the app is to encourage kids to understand the importance of productive tasks such as reading and writing when compared to anti-social activities such as video games, television and computers.
 
-![Home page image of Time Bank](https://github.com/v-tank/time-bank/blob/master/public/assets/Images/screenshot2.png)
+![Home page image of Time Bank](https://github.com/v-tank/time-bank/blob/master/public/assets/Images/profilepagess.png)
 
 ## Live Link
 https://timebankio.herokuapp.com/
