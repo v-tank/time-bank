@@ -1,7 +1,7 @@
 # Time Bank
 #### version 1.0.0
 
-Time Bank was built as part of a project for UC Berkeley Coding Boot Camp. The purpose of the app is to encourage kids to understand the importance of productive tasks such as reading and writing when compared to anti-social activities such as video games, television and computers.
+Time Bank was built as part of a project for UC Berkeley Coding Boot Camp. The purpose of the app is to encourage kids to understand the importance of productive tasks such as reading and exercise when compared to other anti-social activities such as video games, television and computers.
 
 ![Home page image of Time Bank](https://github.com/v-tank/time-bank/blob/master/public/assets/Images/profilepagess.png)
 
@@ -23,19 +23,20 @@ https://timebankio.herokuapp.com/
 
 + A calculator allows parents to determine how much time their child would need to spend doing productive time at a given percent in order to accumulate a certain banked time. For example, if a kid wanted to watch an hour of television, they would know how much reading they would have to do first. 
 
-## Technology Used
+## Technologies Used
 
-+ Handlebars -- https://handlebarsjs.com
-+ Heroku -- https://heroku.com
-+ Chart.js -- https://chartjs.org
-+ Express -- https://expressjs.org
-+ Passport.js -- https://passportjs.org
-+ GetBootStrap -- http://getbootstrap.com/
++ Node.js -- https://nodejs.org/en/
++ Express -- https://expressjs.org/
++ Chart.js -- https://chartjs.org/
++ Passport.js -- https://passportjs.org/
++ Handlebars -- https://handlebarsjs.com/
++ Bootstrap -- http://getbootstrap.com/
++ Javascript, jQuery, HTML, CSS, MySQL, Sequelize
 
 ## Plans for future versions
 + Ability to run multiple timers and stopwatches simultaneously so more than one child can be timed at the same time.
 + Add ability for parents to manually add or subtract time to reward or punish a child's behavior.
-+ Connect app to wearable devices similar to pedometers so that kids can see in real time what their banked time is and how much time they have left to do their play time.
++ Connect app to wearable devices similar to pedometers so that kids can see in real time what their banked time is and how much time they have left for their play time.
 
 
 ## Authors
