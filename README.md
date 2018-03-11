@@ -1,5 +1,4 @@
 # Time Bank
-#### version 1.0.0
 
 Time Bank was built as part of a project for UC Berkeley Coding Boot Camp. The purpose of the app is to encourage kids to understand the importance of productive tasks such as reading and exercise when compared to other anti-social activities such as video games, television and computers.
 
