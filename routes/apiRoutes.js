@@ -1,3 +1,4 @@
+// Require the necessary files and packages
 var db = require("../models");
 var passport = require("../config/passport");
 var isAuthenticated = require("../config/middleware/isAuthenticated");
@@ -5,34 +6,32 @@ var isAuthenticated = require("../config/middleware/isAuthenticated");
 module.exports = function (app) {
 
   app.get("/", function (req, res) {
-    console.log("At the root");
+    // console.log("At the root");
     // If the parent already has an account send them to the members page
     // if (req.user) {
     //   res.redirect("/profile");
     // }
-    res.render("index");
+    res.render("index"); // Render the index page upon load to prompt user to log in
   });
 
-  // app.get("/login", function (req, res) {
-
-  //   // If the user already has an account send them to the profile page
-  //   // res.redirect("/profile");
-  //   res.render("index");
-  // });
-
+  // Route the user to their designated profile page by taking in the user ID 
   app.get("/profile/:id", isAuthenticated, function (req, res) {
-    res.render("profile", { id: req.params.id, user: req.user.name });
+    res.render("profile", { id: req.params.id, user: req.user.name }); // Render the profile page using the parent's name
   });
 
+  // Route to add a child to the database
   app.post("/addChild", function(req, res) {
     // console.log(req.user);
-    console.log(req.body.array);
+    // console.log(req.body.array);
 
+    // Creates a new child using the Parent ID as a foreign key
     db.Child.create({
       name: req.body.name,
       ParentId: req.user.id
     }).then(function(results) {
       // console.log(results);
+
+      // Once a child is created, create tasks for that child using the multipliers set by the parents upon creation
       db.Child.findOne({
         where: {
           name: req.body.name
@@ -56,6 +55,7 @@ module.exports = function (app) {
     });
   });
 
+  // Route to log the user in after checking the password against the database; redirects to the root upon failure
   app.post('/',
     passport.authenticate('local', { failureRedirect: '/' }), function (req, res) {
       db.Parent.findOne({
@@ -70,16 +70,11 @@ module.exports = function (app) {
       // console.log(res.body);
     });
     
-
-  // app.post("/login", passport.authenticate("local"), { failureRedirect: '/' }), function (req, res) {
-  //   // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
-  //   // So we're sending the user back the route to the profile page because the redirect will happen on the front end
-  //   // They won't get this or even be able to access this page if they aren't authed
-  //   res.render("profile");
-  // });
-
+  // Route to handle the sign up process
   app.post("/signup", function (req, res) {
-    console.log(req.body);
+    // console.log(req.body);
+
+    // Creates a new account for the parent using the username and password; generates a hash for the password on the backend
     db.Parent.create({
       name: req.body.username,
       password: req.body.password
@@ -89,12 +84,14 @@ module.exports = function (app) {
     }).catch(function (err) {
       // console.log(err);
       // res.json(err);
+
+      // Displays an error if the username is already taken 
       console.log(err.errors[0].message);
       res.render("index", { alert: err.errors[0].message });
     });
   });
 
-  // Route for logging user out
+  // Route for logging the user out
   app.get("/logout", function (req, res) {
     req.logout();
     res.redirect("/");
@@ -116,21 +113,7 @@ module.exports = function (app) {
     }
   });
 
-  // app.get("/:id/addChild", function (req, res) {
-  //   // console.log(req);
-  //   res.render("addChild");
-
-  // });
-
-  // app.post("/addChild/:id", function (req, res) {
-  //   console.log(req.body);
-  //   console.log(req.params.id);
-  //   // db.Child.create({
-  //   //   name: req.body.name,
-  //   //   foreignKey: 
-  //   // })
-  // });
-
+  // Returns all the children associated with a specific parent ID
   app.get("/children", function(req, res) {
     if (req.user) {
       db.Child.findAll({
@@ -143,22 +126,20 @@ module.exports = function (app) {
     }
   });
 
+  // Route to display the 'earn-it' page for the child
   app.get("/earnIt/:id", function (req, res) {
-    // console.log(req.params);
 
-    // console.log("======================================");
-    // console.log(req.body);
-
+    // Find the child ID in the database and render the page using the retrieved info
     db.Child.findOne({
       where: {
         id: req.params.id
       }
     }).then(function(result) {
-      // console.log(result.name);
       res.render("earnIt", { id: req.params.id, name: result.name });
     });
   });
 
+  // Update route to update the banked time in the database
   app.put("/earnIt/:id", function (req, res) {
   db.Task.update({
       banked_time: "20",
@@ -173,12 +154,14 @@ module.exports = function (app) {
     });
   });
 
+  // GET route to render the 'spend-it' page. Had to hard code to only display one user because we ran out of time
   app.get("/spendIt", function (req, res) {
     res.render("spendIt");
   });
 
+  // Grabs the tasks for a specific child and creates a pie chart
   app.get("/report/:id", function (req, res) {
-    //grapping the data from Tasks table, then show it on the chart
+    //grabbing the data from Tasks table, then show it on the chart
     db.Task.findAll({
       where: {
         ChildId: req.params.id
@@ -186,17 +169,18 @@ module.exports = function (app) {
 
     }).then(function (dbTask) {
 
-      //this total productive time for the kid
+      // this totals productive time for the kid
       var total = 0;
-      //create an emtpy array to hold the data from MySQL
+      // creates an empty array to hold the data from MySQL
       var results = [];
 
-      //generating each index in the Task database
+      // generating each index in the Task database
       for (var i = 0; i < dbTask.length; i++) {
         total += dbTask[i].productive_time;
         results.push(dbTask[i]);
       }
-
+      
+      // Renders the report page with the retrieved data
       res.render("report", {
         total: total,
         dbTask: results
@@ -205,6 +189,7 @@ module.exports = function (app) {
 
   });
 
+  // GET route to render the FAQ page
   app.get("/help-FAQ", function (req, res) {
     res.render("help-FAQ")
   });
