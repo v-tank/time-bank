@@ -1,4 +1,6 @@
 module.exports = function (sequelize, DataTypes) {
+  
+  // Creates a Child model with a name and association to a ParentID
   var Child = sequelize.define("Child", {
     name: {
       type: DataTypes.STRING,
@@ -13,8 +15,8 @@ module.exports = function (sequelize, DataTypes) {
       }
     });
   };
-
-  return Child;
+  
+  return Child; // Returns the Child model
 }
 
 
