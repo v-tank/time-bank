@@ -4,7 +4,7 @@ $(document).ready(function () {
 });
 
 // 15 minutes, 30 seconds from now
-var time_in_minutes = 15.5;
+var time_in_minutes = 15.5; // Hard-coded this value for the demo but ideally this would grab the banked minutes from the database and then count down from that time
 var current_time = Date.parse(new Date());
 
 var deadline = new Date(current_time + time_in_minutes * 60 * 1000);
