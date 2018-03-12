@@ -40,7 +40,7 @@ https://timebankio.herokuapp.com/
 
 ## Authors
  + Stacy Areas
- + Nydia Guo
+ + Ni Nydia Guo
  + David Morrill
  + Payam Asem
  + Vaibhav Tank 
