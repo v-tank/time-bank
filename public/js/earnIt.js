@@ -610,24 +610,23 @@ timerInstance.addEventListener('reset', function (e) {
 }); 
 
 
-
+// Listener function to send the time from the user entry/stopwatch into the database
 $("#bank-it-button").on("click", function(event) {
   event.preventDefault();
   var valueToPush = "";
   var url = window.location.href;
-
   var queryString = url.split("/");
-  
-  // console.log(queryString);
-  var ID = queryString[queryString.length - 1];
-  console.log(ID);
+  var ID = queryString[queryString.length - 1]; // Grabs the last parameter from the window's URL as the ID 
+  // console.log(ID);
 
+  // Conditional to choose whether to override the stopwatch value or use it to push to the database
   if ($("#override-value").val().trim() === "") {
     valueToPush = $("#values").val().trim();
   } else {
     valueToPush = $("#override-value").val().trim();
   }
 
+  // AJAX call to update the banked time in the database
   $.ajax({
     method: "PUT",
     url: "/earnIt/" + ID,

@@ -1,3 +1,4 @@
+// Listener functions to animate the login form screen and change classes
 $(function () {
   $('#login-form-link').click(function (e) {
     $("#login-form").delay(100).fadeIn(100);

@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  pause_clock()
+  pause_clock() // Pause the clock on page load
 
 });
 
