@@ -1,4 +1,6 @@
 module.exports = function (sequelize, DataTypes) {
+
+  // Creates a Task model with a name, weight, productive and banked times
   var Task = sequelize.define("Task", {
     name: {
       type: DataTypes.STRING,
@@ -15,7 +17,8 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.INTEGER
     }
   });
-
+  
+  // Associate a task with a ChildId
   Task.associate = function (models) {
     Task.belongsTo(models.Child, {
       foreignKey: {
@@ -24,5 +27,5 @@ module.exports = function (sequelize, DataTypes) {
     });
   };
 
-  return Task;
+  return Task; // Returns the Task model
 }
