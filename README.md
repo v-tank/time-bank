@@ -25,7 +25,7 @@ https://timebankio.herokuapp.com/
 ## Technologies Used
 
 + Node.js -- https://nodejs.org/en/
-+ Express -- https://expressjs.org/
++ Express -- https://expressjs.com/
 + Chart.js -- https://chartjs.org/
 + Passport.js -- https://passportjs.org/
 + Handlebars -- https://handlebarsjs.com/
