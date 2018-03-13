@@ -27,7 +27,7 @@ https://timebankio.herokuapp.com/
 + Node.js -- https://nodejs.org/en/
 + Express -- https://expressjs.com/
 + Chart.js -- https://chartjs.org/
-+ Passport.js -- https://passportjs.org/
++ Passport.js -- http://www.passportjs.org/
 + Handlebars -- https://handlebarsjs.com/
 + Bootstrap -- http://getbootstrap.com/
 + Javascript, jQuery, HTML, CSS, MySQL, Sequelize
