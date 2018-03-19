@@ -8,6 +8,8 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var session = require("express-session");
 var passport = require("passport");
+var logger = require("morgan");
+var expressValidator = require("express-validator");
 // var local = require("passport-local");
 
 
@@ -24,6 +26,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
+app.use(expressValidator());
 
 // Set middleware
 app.use(session({
@@ -47,7 +50,7 @@ app.use(express.static("public"));
 
 // Routes
 // =============================================================
-require("./routes/htmlRoutes.js")(app);
+// require("./routes/htmlRoutes.js")(app);
 require("./routes/apiRoutes.js")(app);
 
 // Syncing our sequelize models and then starting our Express app
