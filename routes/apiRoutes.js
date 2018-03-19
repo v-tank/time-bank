@@ -10,6 +10,20 @@ module.exports = function (app) {
     res.render("login", {title: "Login"}); // Render the index page upon load to prompt user to log in
   });
 
+  app.post('/login',
+    passport.authenticate('local', { failureRedirect: '/' }), function (req, res) {
+      db.Parent.findOne({
+        where: {
+          name: req.body.name
+        }
+      }).then(function (results) {
+        // res.json(results);
+        // console.log(results.id);
+        res.redirect("/profile/" + results.id);
+      })
+      // console.log(res.body);
+    });
+
   app.get("/register", function (req, res) {
     res.render("register", {title: "Register"}); // Render the index page upon load to prompt user to log in
   });
@@ -59,4 +73,18 @@ module.exports = function (app) {
     console.log(req.isAuthenticated());
     res.render("profile", { title: req.user }); // Render the index page upon load to prompt user to log in
   });
+
+  passport.use(new LocalStrategy(
+    function (username, password, done) {
+      User.findOne({ username: username }, function (err, user) {
+        if (err) { return done(err); }
+        if (!user) {
+          return done(null, false, { message: 'Incorrect username.' });
+        }
+        if (!user.validPassword(password)) {
+          return done(null, false, { message: 'Incorrect password.' });
+        }
+      });
+    }
+  ));
 }
