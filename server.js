@@ -10,6 +10,7 @@ var session = require("express-session");
 var passport = require("passport");
 var logger = require("morgan");
 var expressValidator = require("express-validator");
+var MySQLStore = require('express-mysql-session')(session);
 // var local = require("passport-local");
 
 
@@ -27,12 +28,25 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 app.use(expressValidator());
+app.use(logger("dev"));
+
+var options = {
+  host: 'localhost',
+  port: 3306,
+  user: 'root',
+  password: '',
+  database: 'time_bank_v2'
+};
+
+var sessionStore = new MySQLStore(options);
 
 // Set middleware
 app.use(session({
-	secret: "secret",
-	saveUninitalized: true,
-	resave: true
+  secret: "P4s$W0|/D",
+  store: sessionStore,
+  resave: false,
+  saveUninitialized: false,
+  // cookie: { secure: true }
 }));
 
 // Set passport middleware 

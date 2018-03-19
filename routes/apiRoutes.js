@@ -1,7 +1,7 @@
 // Require the necessary files and packages
 var db = require("../models");
-// var passport = require("../config/passport");
-// var isAuthenticated = require("../config/middleware/isAuthenticated");
+var passport = require("../config/passport");
+var isAuthenticated = require("../config/middleware/isAuthenticated");
 var expressValidator = require("express-validator");
 
 module.exports = function (app) {
@@ -38,7 +38,13 @@ module.exports = function (app) {
         username: req.body.username,
         password: req.body.pass
       }).then(function (user) {
-        res.render("register", {title: "Registration Complete."})
+        const user_id = user.id;
+
+        req.login(user_id, function(err) {
+          res.redirect("/profile/" + user_id);
+        })
+
+        // res.render("register", {title: "Registration Complete."})
       }).catch(function (err) {
         console.log(err.errors[0].message);
         res.render("register", {
@@ -46,5 +52,11 @@ module.exports = function (app) {
         });
       });
     }
+  });
+
+  app.get("/profile/:id", isAuthenticated(), function (req, res) {
+    console.log(req.user);
+    console.log(req.isAuthenticated());
+    res.render("profile", { title: req.user }); // Render the index page upon load to prompt user to log in
   });
 }
