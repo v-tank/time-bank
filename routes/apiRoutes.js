@@ -1,8 +1,10 @@
 // Require the necessary files and packages
 var db = require("../models");
-var passport = require("../config/passport");
+var passport = require("passport");
 var isAuthenticated = require("../config/middleware/isAuthenticated");
 var expressValidator = require("express-validator");
+var LocalStrategy = require('passport-local').Strategy;
+var bcrypt = require("bcryptjs");
 
 module.exports = function (app) {
 
@@ -10,19 +12,25 @@ module.exports = function (app) {
     res.render("login", {title: "Login"}); // Render the index page upon load to prompt user to log in
   });
 
-  app.post('/login',
-    passport.authenticate('local', { failureRedirect: '/' }), function (req, res) {
-      db.Parent.findOne({
-        where: {
-          name: req.body.name
-        }
-      }).then(function (results) {
-        // res.json(results);
-        // console.log(results.id);
-        res.redirect("/profile/" + results.id);
-      })
-      // console.log(res.body);
-    });
+  app.post('/login', passport.authenticate('local', { failureRedirect: '/' }), function (req, res) {
+    db.Parent.findOne({
+      where: {
+        username: req.body.username
+      }
+    }).then(function (results) {
+      // res.json(results);
+      // console.log(results.id);
+      res.redirect("/profile/" + results.id);
+    })
+    // console.log(res.body);
+  });
+
+  app.get("/logout", function (req, res) {
+    req.logout();
+    req.session.destroy();
+
+    res.redirect("/"); // Render the index page upon load to prompt user to log in
+  });
 
   app.get("/register", function (req, res) {
     res.render("register", {title: "Register"}); // Render the index page upon load to prompt user to log in
@@ -71,20 +79,59 @@ module.exports = function (app) {
   app.get("/profile/:id", isAuthenticated(), function (req, res) {
     console.log(req.user);
     console.log(req.isAuthenticated());
-    res.render("profile", { title: req.user }); // Render the index page upon load to prompt user to log in
+    res.render("profile"); // Render the profile page upon load to prompt user to log in
+  });
+
+  passport.serializeUser(function (user_id, done) {
+    done(null, user_id);
+  });
+
+  passport.deserializeUser(function (user_id, done) {
+    done(null, user_id);
   });
 
   passport.use(new LocalStrategy(
-    function (username, password, done) {
-      User.findOne({ username: username }, function (err, user) {
-        if (err) { return done(err); }
-        if (!user) {
-          return done(null, false, { message: 'Incorrect username.' });
-        }
-        if (!user.validPassword(password)) {
-          return done(null, false, { message: 'Incorrect password.' });
+    {
+      usernameField: "username",
+    },
+    function (username, pass, done) {
+      console.log(username);
+      console.log(pass);
+
+      db.Parent.findOne({
+        where: {
+          username: username
+          }
+        }).then(function(dbParent) {
+          console.log("In here");
+          // console.log(dbParent);
+
+          if (!dbParent) {
+            return done(null, false, {message: 'Incorrect username.'});
+          }
+          else{
+            const hash = dbParent.password;
+
+            bcrypt.compare(pass, hash, function (err, response) {
+              if (response) {
+                console.log("Password matched.");
+                return done(null, { user_id: dbParent.id });
+              } else {
+                console.log("Incorrect password.");
+                return done(null, false);
+              }
+            })
         }
       });
     }
   ));
+
+  function isAuthenticated() {
+    return (req, res, next) => {
+      console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
+
+      if (req.isAuthenticated()) return next();
+      res.redirect('/')
+    }
+  }
 }

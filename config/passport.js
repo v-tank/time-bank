@@ -8,3 +8,5 @@ passport.serializeUser(function (user_id, done) {
 passport.deserializeUser(function (user_id, done) {
   done(null, user_id);
 });
+
+module.exports = passport;

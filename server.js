@@ -28,7 +28,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 app.use(expressValidator());
-app.use(logger("dev"));
+// app.use(logger("dev"));
 
 var options = {
   host: 'localhost',
@@ -53,6 +53,11 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(function(req, res, next) {
+  res.locals.isAuthenticated = req.isAuthenticated();
+  next();
+});
+
 // Set Handlebars.
 var exphbs = require("express-handlebars");
 
@@ -66,6 +71,7 @@ app.use(express.static("public"));
 // =============================================================
 // require("./routes/htmlRoutes.js")(app);
 require("./routes/apiRoutes.js")(app);
+// require("./config/passport")(passport);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
