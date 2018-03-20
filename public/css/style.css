@@ -6,3 +6,20 @@
 .navbar-brand {
   font-size: 2rem !important;
 }
+
+.btn-img {
+  width: 150px;
+}
+
+.footer {
+  background: #292b2f;
+  text-align: center;
+  line-height: 6rem;
+  height: 100px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: #fff;
+  overflow: auto
+}

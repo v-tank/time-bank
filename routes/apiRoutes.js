@@ -78,6 +78,10 @@ module.exports = function (app) {
     }
   });
 
+  app.get("/faq", function (req, res) {
+    res.render("faq"); // Render the index page upon load to prompt user to log in
+  });
+
   app.get("/profile/:id", isAuthenticated(), function (req, res) {
     res.render("profile", {name: req.user.name}); // Render the profile page upon load to prompt user to log in
   });
