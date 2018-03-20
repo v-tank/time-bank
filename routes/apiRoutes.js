@@ -20,6 +20,8 @@ module.exports = function (app) {
     }).then(function (results) {
       // res.json(results);
       // console.log(results.id);
+
+      console.log("Login info: " + JSON.stringify(req.user));
       res.redirect("/profile/" + results.id);
     })
     // console.log(res.body);
@@ -77,9 +79,7 @@ module.exports = function (app) {
   });
 
   app.get("/profile/:id", isAuthenticated(), function (req, res) {
-    console.log(req.user);
-    console.log(req.isAuthenticated());
-    res.render("profile"); // Render the profile page upon load to prompt user to log in
+    res.render("profile", {name: req.user.name}); // Render the profile page upon load to prompt user to log in
   });
 
   passport.serializeUser(function (user_id, done) {
@@ -95,15 +95,15 @@ module.exports = function (app) {
       usernameField: "username",
     },
     function (username, pass, done) {
-      console.log(username);
-      console.log(pass);
+      // console.log(username);
+      // console.log(pass);
 
       db.Parent.findOne({
         where: {
           username: username
           }
         }).then(function(dbParent) {
-          console.log("In here");
+          // console.log("In here");
           // console.log(dbParent);
 
           if (!dbParent) {
@@ -114,10 +114,10 @@ module.exports = function (app) {
 
             bcrypt.compare(pass, hash, function (err, response) {
               if (response) {
-                console.log("Password matched.");
-                return done(null, { user_id: dbParent.id });
+                // console.log("Password matched.");
+                return done(null, { user_id: dbParent.id, name: dbParent.name });
               } else {
-                console.log("Incorrect password.");
+                // console.log("Incorrect password.");
                 return done(null, false);
               }
             })
@@ -128,7 +128,7 @@ module.exports = function (app) {
 
   function isAuthenticated() {
     return (req, res, next) => {
-      console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
+      // console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
 
       if (req.isAuthenticated()) return next();
       res.redirect('/')
