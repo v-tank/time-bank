@@ -1,17 +1,22 @@
 {{> header }}
 
-<div class="container mt-3">
+<div class="container mt-5">
   <div class="row justify-content-center">
-    <h2>Welcome, {{name}}!</h2>
+    <h1>Welcome, {{name}}!</h1>
   </div>
-  <div class="row mt-5">
+  <div class="row m-5 align-items-center justify-content-center" id="childrenContainer">
+    <div class="col text-center p-5">
+      <h2 style="font-style: italic">Add a Child to begin.</h2>
+    </div>
+  </div>
+  {{!-- <div class="row mt-5">
     <div class="col text-center">
       <img class="btn-img" src="/assets/img/stopwatch.png" />
     </div>
     <div class="col text-center">
       <img class="btn-img" src="/assets/img/hourglass.png" />
     </div>
-  </div>
+  </div> --}}
 </div>
 
-{{> footer }}
+{{!-- {{> footer }} --}}
