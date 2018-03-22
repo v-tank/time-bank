@@ -78,6 +78,48 @@ module.exports = function (app) {
     }
   });
 
+  app.post("/addChild", function (req, res) {
+    console.log(req.user);
+    // console.log(req.body.array);
+    var array = req.body.array;
+    for (var i = 0; i < array.length; i++) {
+      console.log("Task Name: " + array[i].taskName + "; Weight: " + array[i].task_weight)
+    }
+
+    db.Child.create({
+      name: req.body.name,
+      ParentId: req.user.user_id
+    }).then(function(results) {
+      // console.log(results);
+      db.Child.findOne({
+        where: {
+          id: results.id
+        }
+      }).then(function(results) {
+        for (var i = 0; i < array.length; i++) {
+          db.Task.create({
+            name: array[i].taskName,
+            task_weight: array[i].task_weight,
+            ChildId: results.id
+          })
+        }
+      })
+    })
+  });
+
+  app.get("/children", function (req, res) {
+    if (req.user) {
+      db.Child.findAll({
+        where: {
+          ParentId: req.user.user_id
+        }
+      }).then(function(results){
+        res.json(results);
+      })
+    }
+  });
+
+
   app.get("/faq", function (req, res) {
     res.render("faq"); // Render the index page upon load to prompt user to log in
   });
