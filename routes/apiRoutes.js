@@ -125,7 +125,7 @@ module.exports = function (app) {
   });
 
   app.get("/profile/:id", isAuthenticated(), function (req, res) {
-    res.render("profile", {name: req.user.name}); // Render the profile page upon load to prompt user to log in
+    res.render("profile", {name: req.user.name, id: req.user.user_id}); // Render the profile page upon load to prompt user to log in
   });
 
   passport.serializeUser(function (user_id, done) {
