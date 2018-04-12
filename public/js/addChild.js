@@ -38,11 +38,7 @@ function getChildren() {
       $("#childrenContainer").empty();
 
       for (var i = 0; i < res.length; i++ ) {
-        var a = 
-        '<div class="col-md-4">' + 
-          '<a href="#"><p class="circle" value="' + res[i].id + '"><span>' + res[i].name + '</span></p></a>' +
-        '</div>';
-
+        var a = '<input type="radio" id="' + res[i].name + '" name="kids" value="' + res[i].name + '"><label for="' + res[i].name + '">' + res[i].name + "</label>";
         $("#childrenContainer").append(a);
       }
     }
