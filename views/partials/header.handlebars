@@ -20,22 +20,17 @@
           <a class="nav-link" href="/profile/{{id}}">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/earn/{{id}}">Earn Time</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/spend/{{id}}">Spend Time</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" href="/calculator">Calculate Bank Time</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/report">Report</a>
         </li>
-        <a href="/logout"><button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button></a>
+      </ul>
+      <a href="/logout"><button class="btn btn-outline-danger" type="submit">Logout</button></a>
   {{else}}
-          <li class="nav-item ml-auto">
-            <a class="nav-link" href="/faq">FAQ</a>
-          </li>
+        <li class="nav-item ml-auto">
+          <a class="nav-link" href="/faq">FAQ</a>
+        </li>
       </ul>
   {{/if}}
   </div>
