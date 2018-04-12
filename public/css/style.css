@@ -1,6 +1,5 @@
 .navbar {
   opacity: 0.9;
-  height: 55px;
 }
 
 .navbar-brand {
@@ -35,13 +34,28 @@ span, a {
   border: #f8f8f8 6px solid;
 }
 
-.circle span {
-  display: table-cell;
-  vertical-align: middle;
-  height: 175px;
-  width: 175px;
-  text-align: center;
-  padding: 0 15px;
+.boxed label {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 0%, rgba(0, 0, 0, 0.15) 100%),
+  radial-gradient(at top center, rgba(255, 255, 255, 0.40) 0%, rgba(0, 0, 0, 0.40) 120%) #989898;
+  background-blend-mode: multiply,
+  multiply;
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  padding-top: 80px;
+  border: #f8f8f8 6px solid;
+  transition: all 0.3s;
+  border-radius: 50%;
+  margin-right: 10px;
+  font-size: 1.5em;
+}
+
+.boxed input[type="radio"] {
+  display: none;
+}
+
+.boxed input[type="radio"]:checked+label {
+  border: #ffc107 6px solid;
 }
 
 .footer {
