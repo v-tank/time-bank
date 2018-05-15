@@ -14,6 +14,10 @@ span, a {
   white-space: pre;
 }
 
+#title{
+  white-space: normal;
+}
+
 .btn-img {
   width: 150px;
 }

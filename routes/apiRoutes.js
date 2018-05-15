@@ -9,7 +9,8 @@ var bcrypt = require("bcryptjs");
 module.exports = function (app) {
 
   app.get("/", function (req, res) {
-    res.render("login", {title: "Login"}); // Render the index page upon load to prompt user to log in
+    // res.render("login", {title: "Login"}); // Render the index page upon load to prompt user to log in
+    res.render("maintenance"); // Render the maintenance page upon load to prompt user to log in
   });
 
   app.post('/login', passport.authenticate('local', { failureRedirect: '/' }), function (req, res) {

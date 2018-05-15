@@ -1,6 +1,20 @@
 $(document).ready(function() {
   getChildren();
 
+  $("#addTaskBtn").on("click", function(event) {
+    console.log("Holi!");
+
+    var whichDiv = document.getElementById("tasksDiv");
+    var div = $("<div>");
+
+    // div.append('<div class="form-row"><div class="col"><input type="text" class="form-control" placeholder="Task Name" name="taskInputs[]"></div><div class="col"><input type="text" class="form-control" placeholder="Task Weight Percentage (ex: 40)" name="taskInputs[]"></div></div>');
+
+    div.html("Test");
+
+    whichDiv.append(div);
+    console.log("appended?")
+  })
+
   $("#add-child-submit").on("click", function (event) {
     event.preventDefault();
     var childName = $("#childName").val().trim();
